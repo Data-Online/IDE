@@ -1,0 +1,5 @@
+P:\Projects\Cloud_Development\CIMSCO\InvoiceDataEntry\IDE\Business Layer\bin\IDE.Business.dll
+P:\Projects\Cloud_Development\CIMSCO\InvoiceDataEntry\IDE\Business Layer\bin\IDE.Business.pdb
+P:\Projects\Cloud_Development\CIMSCO\InvoiceDataEntry\IDE\Business Layer\obj\Debug\IDE.Business.csprojResolveAssemblyReference.cache
+P:\Projects\Cloud_Development\CIMSCO\InvoiceDataEntry\IDE\Business Layer\obj\Debug\IDE.Business.dll
+P:\Projects\Cloud_Development\CIMSCO\InvoiceDataEntry\IDE\Business Layer\obj\Debug\IDE.Business.pdb

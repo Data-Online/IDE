@@ -1,0 +1,33 @@
+﻿Congratulations!  Your application has been migrated.
+
+These Migration Notes are located in P:\Projects\Cloud_Development\CIMSCO\InvoiceDataEntry\IDE\MigrationNotes.txt
+
+You may need to make additional changes to compile and run your application.
+1. Search for "MIGRATION NOTES" in your .cs and .vb code-behind files and make changes as necessary.
+
+2. Re-apply JavaScript code customizations, if any in P:\Projects\Cloud_Development\CIMSCO\InvoiceDataEntry\IDE\ApplicationWebForm.js
+and P:\Projects\Cloud_Development\CIMSCO\InvoiceDataEntry\IDE\ApplicationWebUIValidation.js.
+
+3. Re-apply style sheet changes, if any, to Styles.css for web and mobile
+
+4. If the original application contains any files and folders added by source code control software then,
+during migration they will be deleted so that migration can happen smoothly. If you really need these 
+files and folders then, you can check the migrated application back into the source code control system and 
+it will recreate all the folders. If this does not work then you can add these folders manually from the back-up application.
+
+5. Addition resource values are appended to resource files.  Correct the translation for multi-languages if necessary
+
+6. If your application contains a reference to a third party DLL, you will need to add this reference to the project file (VBProj or CSProj) 
+and to the CompileApplication.rsp files since new versions of these files have been placed in the application folder.
+
+7. Note that during migration a lot of files such as BaseFormulaUtils.cs(vb) and many others are being replaced. For the full list of files please visit
+http://www.ironspeed.com/Designer/12.2.0/WebHelp/desktop/Part_XII/Part_XII_Application_Migration.htm
+
+Please make the 7 changes shown above before building and running your application.
+You can delete the *.back files once you are satisfied with the migrated application.
+
+For pages that contain multiple menu items, upon migration, the page will continue to display each of the menu items.
+If the page is recreated after it is migrated, it will use the current default Master page, so the number of menu items displayed on the page will be based on the menu items in the current Master page.
+Ideally, the additional menu items should be added to the Master page, and not to the page itself.  You can create multiple Master pages and bind pages to different Master pages as needed. 
+
+

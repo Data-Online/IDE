@@ -1,0 +1,9 @@
+P:\Projects\Cloud_Development\CIMSCO\InvoiceDataEntry\IDE\Data Access Layer\bin\IDE.Data.dll
+P:\Projects\Cloud_Development\CIMSCO\InvoiceDataEntry\IDE\Data Access Layer\bin\Newtonsoft.Json.dll
+P:\Projects\Cloud_Development\CIMSCO\InvoiceDataEntry\IDE\Data Access Layer\obj\Release\IDE.Data.csprojResolveAssemblyReference.cache
+P:\Projects\Cloud_Development\CIMSCO\InvoiceDataEntry\IDE\Data Access Layer\obj\Release\IDE.Data.dll
+Z:\Software Versions\_IDE\IDE\Data Access Layer\bin\IDE.Data.dll
+Z:\Software Versions\_IDE\IDE\Data Access Layer\bin\Newtonsoft.Json.dll
+Z:\Software Versions\_IDE\IDE\Data Access Layer\obj\Release\IDE.Data.csprojResolveAssemblyReference.cache
+Z:\Software Versions\_IDE\IDE\Data Access Layer\obj\Release\IDE.Data.dll
+P:\Projects\Cloud_Development\CIMSCO\InvoiceDataEntry\IDE\Data Access Layer\bin\Newtonsoft.Json.xml
