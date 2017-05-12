@@ -14,6 +14,7 @@
     <Layout>EnergyPoints\Edit-EnergyPoints.html</Layout>
     <DisplayName>Edit-EnergyPoints</DisplayName>
     <Description>Standard record panel.</Description>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>-1589805420-56409</CheckSum>
   </Self>
   <ComposedOf>

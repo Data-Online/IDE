@@ -14,6 +14,7 @@
     <Layout>Sites\Edit-Sites-Table.html</Layout>
     <DisplayName>Edit-Sites-Table</DisplayName>
     <Description>Table view to show or edit multiple records.</Description>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>-246206592-23894</CheckSum>
   </Self>
   <ComposedOf>

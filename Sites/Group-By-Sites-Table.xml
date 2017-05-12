@@ -14,6 +14,7 @@
     <Layout>Sites\Group-By-Sites-Table.html</Layout>
     <DisplayName>Group-By-Sites-Table</DisplayName>
     <Description>Table view to show or edit multiple records.</Description>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>-2106044099-81482</CheckSum>
   </Self>
   <ComposedOf>

@@ -21,16 +21,17 @@ using BaseClasses.Utils;
 using ReportTools.ReportCreator;
 using ReportTools.Shared;
 
-        
+
 using IDE.Business;
 using IDE.Data;
 using IDE.UI;
 using IDE;
-		
+using System.Configuration;
+
 
 #endregion
 
-  
+
 namespace IDE.UI.Controls.Add_InvoiceSummaries_Contact
 {
   
@@ -176,104 +177,157 @@ public InvoiceSummariesRecordControl()
                   
         }
 
-#region "Code Customization"
+        #region "Handle Site ID lookup based on ICP number selected"
 
-/// <summary>
-/// This method sets the AutoPostBack property of the field that triggers a change.
-/// </summary>
-/// <param name="sender">The object that raised the init event.</param>
-/// <param name="e">The object that contains the event data of the init event.</param>
-private void MultipleDropdown_MyInit(object sender, System.EventArgs e) 
-{   
-	// AutoPostBack sets or retrieves a value that indicates whether or not the control
-	// posts back to the server each time a user interacts with the control. 
-	// if change in second drop down list updates the first then set
-	// AutoPostback of the second dropdown list to true and implement 
-	EnergyPointId.AutoPostBack = true;
-	SiteId.AutoPostBack = true;
-    
 
-    // Define selected index changed event handlers
-    // for first Dropdown list.
-    this.EnergyPointId.SelectedIndexChanged += 
-    new EventHandler(EnergyPointId_SelectedIndexChanged);
-    
-    SiteId.Enabled = false;
-}
-
-#endregion
-
-#region "Code Customization"
-
-/// <summary>
-/// This method is called when selected index changes in EnergyPointId.
-/// </summary>
-protected override void EnergyPointId_SelectedIndexChanged(object sender, System.EventArgs e) 
-{ 
-    SiteId.Enabled = true;   
-
-    // SiteId DropDownList will display 100 items.
-    // You can set the number of items displayed in the DropDownList.
-    this.PopulateSiteIdDropDown(100);    
-} 
-    
-#endregion
-
-#region "Code Customization"
-
-/// <summary>
-/// Override this method to filter the  SiteIdDropDownList
-/// based on the value selected for the EnergyPointIdDropDownList
-/// </summary>
-protected void PopulateSiteIdDropDown(int maxItems)
-{
-    // Set up the WHERE clause.
-    // Create the WHERE clause to filter the second dropdown list based on the 
-    // selected value in the first dropdown list.
-    WhereClause wc = new WhereClause();
-    string selectedValue = EnergyPointId.SelectedValue;  
-    string selectedText = EnergyPointId.SelectedItem.Text;   
-    wc.iAND(InvoiceSummariesTable.EnergyPointId, BaseFilter.ComparisonOperator.EqualsTo, selectedValue);
-
-    // Clear the contents of second dropdown list.
-    this.SiteId.Items.Clear();    
-    
-    // Add "Please Select" string to second dropdown list.   
-    this.SiteId.Items.Insert(0, new ListItem(Page.GetResourceValue("Txt:PleaseSelect", "IDE"), "--PLEASE_SELECT--"));                      
-    
-    if(BaseClasses.Utils.StringUtils.InvariantUCase(selectedText).Equals(BaseClasses.Utils.StringUtils.InvariantUCase(Page.GetResourceValue("Txt:PleaseSelect", "IDE"))))
-    {
-        // if "Please Select" string is selected for first dropdown list,
-        // then do not continue populating the second dropdown list.
-        return;
-    }    
-    
-    // Get the records using the created where clause.
-    foreach ( InvoiceSummariesRecord itemValue in InvoiceSummariesTable.GetRecords(wc, null, 0, maxItems))
-    {
-        if(itemValue.SiteIdSpecified)
+        /// <summary>
+        /// This method sets the AutoPostBack property of the field that triggers a change.
+        /// </summary>
+        /// <param name="sender">The object that raised the init event.</param>
+        /// <param name="e">The object that contains the event data of the init event.</param>
+        private void MultipleDropdown_MyInit(object sender, System.EventArgs e)
         {
-            // In each record, obtain the value of second dropdown field if value exists,
-            // create an item for it and add it to the list.
-            string cvalue = itemValue.SiteId.ToString();
-            string fvalue  = itemValue.Format(InvoiceSummariesTable.SiteId);
-            ListItem item  = new ListItem(fvalue, cvalue);
-            if (! this.SiteId.Items.Contains(item))
+            // AutoPostBack sets or retrieves a value that indicates whether or not the control
+            // posts back to the server each time a user interacts with the control. 
+            // if change in second drop down list updates the first then set
+            // AutoPostback of the second dropdown list to true and implement 
+            EnergyPointId.AutoPostBack = true;
+            SiteId.AutoPostBack = true;
+
+
+            // Define selected index changed event handlers
+            // for first Dropdown list.
+            this.EnergyPointId.SelectedIndexChanged +=
+            new EventHandler(EnergyPointId_SelectedIndexChanged);
+
+            SiteId.Enabled = false;
+        }
+
+
+        /// <summary>
+        /// This method is called when selected index changes in EnergyPointId.
+        /// </summary>
+        protected override void EnergyPointId_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            //SiteId.Enabled = true;
+
+            // SiteId DropDownList will display 100 items.
+            // You can set the number of items displayed in the DropDownList.
+            this.PopulateSiteIdDropDown(100);
+        }
+
+
+        /// <summary>
+        /// Override this method to filter the  SiteIdDropDownList
+        /// based on the value selected for the EnergyPointIdDropDownList
+        /// </summary>
+        protected void PopulateSiteIdDropDown(int maxItems)
+        {
+            string selectedValue = EnergyPointId.SelectedValue;
+            string selectedText = EnergyPointId.SelectedItem.Text;
+            string _cvalue;
+            string _fvalue;
+            SitesRecord[] _siteRecord;
+            string _setNotSet = ConfigurationManager.AppSettings["SiteNotSet"];
+
+            this.SiteId.Items.Clear();
+
+            try
             {
-                this.SiteId.Items.Add(item);        
+                // Lookup using CimscoNZ source table, get SiteId
+                // This should not fail, as Portal data is sourced from CimscoNZ
+                WhereClause wc2 = new WhereClause();
+                wc2.iAND(EnergyPoints1Table.EnergyPointId, BaseFilter.ComparisonOperator.EqualsTo, selectedValue);
+                EnergyPoints1Record[] _EPSourceData = EnergyPoints1Table.GetRecords(wc2, null, 0, 1);
+                int _siteId = _EPSourceData[0].SiteId;
+
+                WhereClause wc3 = new WhereClause();
+                wc3.iAND(SitesTable.SiteId, BaseFilter.ComparisonOperator.EqualsTo, _siteId.ToString());
+                // Get record from Portal database
+                GetSiteEntry(out _cvalue, out _fvalue, out _siteRecord, wc3);
             }
-        }        
-    }                    
+            catch (Exception ex)
+            {
+                WhereClause wc4 = new WhereClause();
+                wc4.iAND(SitesTable.SiteName, BaseFilter.ComparisonOperator.EqualsTo, _setNotSet);
+                GetSiteEntry(out _cvalue, out _fvalue, out _siteRecord, wc4);
+            }
 
-    // Select "Please Select" string in the second dropdown list.
-    this.SiteId.SelectedIndex = 0;
-}
-   
-#endregion
-}
+            // Add "Please Select" string to second dropdown list.   
+            ////this.SiteId.Items.Insert(0, new ListItem(Page.GetResourceValue("Txt:PleaseSelect", "IDE"), "--PLEASE_SELECT--"));                      
 
-  
-public class NetworkChargesRecordControl : BaseNetworkChargesRecordControl
+            if (BaseClasses.Utils.StringUtils.InvariantUCase(selectedText).Equals(BaseClasses.Utils.StringUtils.InvariantUCase(Page.GetResourceValue("Txt:PleaseSelect", "IDE"))))
+            {
+                // if "Please Select" string is selected for first dropdown list,
+                // then do not continue populating the second dropdown list.
+                return;
+            }
+
+            ListItem item = new ListItem(_fvalue, _cvalue);
+            if (!this.SiteId.Items.Contains(item))
+            {
+                this.SiteId.Items.Add(item);
+            }
+
+
+            // Select "Please Select" string in the second dropdown list.
+            this.SiteId.SelectedIndex = 0;
+        }
+
+        private static void GetSiteEntry(out string _cvalue, out string _fvalue, out SitesRecord[] _siteRecord, WhereClause wc3)
+        {
+            _siteRecord = SitesTable.GetRecords(wc3, null, 0, 1);
+            _cvalue = _siteRecord[0].SiteId.ToString();
+            _fvalue = _siteRecord[0].Format(SitesTable.SiteName);
+        }
+
+
+        public override void SetSiteId()
+        {
+
+            string selectedValue = null;
+
+            // figure out the selectedValue
+
+            // Set the SiteId DropDownList on the webpage with value from the
+            // DatabaseCimscoPortal%dbo.InvoiceSummaries database record.
+
+            // this.DataSource is the DatabaseCimscoPortal%dbo.InvoiceSummaries record retrieved from the database.
+            // this.SiteId is the ASP:DropDownList on the webpage.
+
+            // You can modify this method directly, or replace it with a call to
+            //     base.SetSiteId();
+            // and add your own custom code before or after the call to the base function.
+
+
+            // Default Value could also be NULL.
+            if (this.DataSource != null && this.DataSource.IsCreated)
+            {
+                selectedValue = this.DataSource.SiteId.ToString();
+            }
+            else
+            {
+                selectedValue = EvaluateFormula("URL(\"SiteId\")");
+            }
+
+
+
+            // Populate the item(s) to the control
+            this.SiteId.Items.Clear();
+
+            // 1. Setup the static list items        
+
+            // Add the Please Select item.
+            this.SiteId.Items.Insert(0, new ListItem("**select connection #**", "--PLEASE_SELECT--"));
+            //this.PopulateSiteIdDropDownList(selectedValue, 100);
+
+
+        }
+        #endregion
+    }
+
+
+    public class NetworkChargesRecordControl : BaseNetworkChargesRecordControl
 {
       
         // The BaseNetworkChargesRecordControl implements the LoadData, DataBind and other

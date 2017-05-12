@@ -212,6 +212,78 @@
     <Compile Include="BaseOtherChargesRecord.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="EnergyPoints1Table.cs" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseEnergyPoints1Table.cs" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EnergyPoints1Record.cs" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseEnergyPoints1Record.cs" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EnergySuppliers1Table.cs" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseEnergySuppliers1Table.cs" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EnergySuppliers1Record.cs" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseEnergySuppliers1Record.cs" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LinesCompaniesTable.cs" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseLinesCompaniesTable.cs" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LinesCompaniesRecord.cs" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseLinesCompaniesRecord.cs" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MeteringCompaniesTable.cs" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseMeteringCompaniesTable.cs" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MeteringCompaniesRecord.cs" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseMeteringCompaniesRecord.cs" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Sites1Table.cs" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseSites1Table.cs" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Sites1Record.cs" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseSites1Record.cs" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WeatherStationsTopLevelTable.cs" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseWeatherStationsTopLevelTable.cs" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WeatherStationsTopLevelRecord.cs" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseWeatherStationsTopLevelRecord.cs" >
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data Access Layer\IDE.Data.csproj">

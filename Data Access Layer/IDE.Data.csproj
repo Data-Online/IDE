@@ -188,6 +188,60 @@
     <Compile Include="BaseOtherChargesSqlTable.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="EnergyPoints1Definition.cs" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EnergyPoints1SqlTable.cs" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseEnergyPoints1SqlTable.cs" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EnergySuppliers1Definition.cs" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EnergySuppliers1SqlTable.cs" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseEnergySuppliers1SqlTable.cs" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LinesCompaniesDefinition.cs" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LinesCompaniesSqlTable.cs" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseLinesCompaniesSqlTable.cs" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MeteringCompaniesDefinition.cs" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MeteringCompaniesSqlTable.cs" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseMeteringCompaniesSqlTable.cs" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Sites1Definition.cs" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Sites1SqlTable.cs" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseSites1SqlTable.cs" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WeatherStationsTopLevelDefinition.cs" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WeatherStationsTopLevelSqlTable.cs" >
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseWeatherStationsTopLevelSqlTable.cs" >
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

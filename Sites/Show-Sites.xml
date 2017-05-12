@@ -14,6 +14,7 @@
     <Layout>Sites\Show-Sites.html</Layout>
     <DisplayName>Show-Sites</DisplayName>
     <Description>Standard record panel.</Description>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>-1998364765-75803</CheckSum>
   </Self>
   <ComposedOf>

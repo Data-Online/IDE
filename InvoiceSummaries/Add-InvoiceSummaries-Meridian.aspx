@@ -46,7 +46,8 @@
 </tr>
 </table>
 </span>
- </td><td class="tableCellValue"></td><td class="tableCellLabel"></td></tr><tr><td class="tableCellValue"><span style="white-space:nowrap;">
+ </td><td class="tableCellValue"></td><td class="tableCellLabel">
+</td></tr><tr><td class="tableCellValue"><span style="white-space:nowrap;">
 <asp:TextBox runat="server" id="ConnectionNumber" Columns="30" MaxLength="30" cssclass="field_input" visible="False"></asp:TextBox>&nbsp;
 <asp:RequiredFieldValidator runat="server" id="ConnectionNumberRequiredFieldValidator" ControlToValidate="ConnectionNumber" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueIsRequired&quot;, &quot;IDE&quot;).Replace(&quot;{FieldName}&quot;, &quot;Connection Number&quot;) %>" enabled="True" text="*"></asp:RequiredFieldValidator>&nbsp;
 <BaseClasses:TextBoxMaxLengthValidator runat="server" id="ConnectionNumberTextBoxMaxLengthValidator" ControlToValidate="ConnectionNumber" ErrorMessage="&lt;%# GetResourceValue(&quot;Val:ValueTooLong&quot;, &quot;IDE&quot;).Replace(&quot;{FieldName}&quot;, &quot;Connection Number&quot;) %>"></BaseClasses:TextBoxMaxLengthValidator></span>

@@ -29,7 +29,7 @@ public class UsersDefinition
 		if(_DefinitionString == "")
 		{
 			         System.Text.StringBuilder tbf = new System.Text.StringBuilder();
-         tbf.Append(@"<XMLDefinition Generator=""Iron Speed Designer"" Version=""12.0"" Type=""USER"">");
+         tbf.Append(@"<XMLDefinition Generator=""Iron Speed Designer"" Version=""12.2"" Type=""USER"">");
          tbf.Append(  @"<ColumnDefinition>");
          tbf.Append(    @"<Column InternalName=""0"" Priority=""1"" ColumnNum=""0"">");
          tbf.Append(      @"<columnName>UserId</columnName>");

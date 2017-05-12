@@ -14,6 +14,7 @@
     <Layout>EnergySuppliers\EnergySuppliers-QuickSelector.html</Layout>
     <DisplayName>EnergySuppliers-QuickSelector</DisplayName>
     <Description>Table view to show or edit multiple records.</Description>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
   </Self>
   <ComposedOf>
     <ContainedComponent>

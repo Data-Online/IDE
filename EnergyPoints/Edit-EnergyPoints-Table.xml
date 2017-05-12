@@ -14,6 +14,7 @@
     <Layout>EnergyPoints\Edit-EnergyPoints-Table.html</Layout>
     <DisplayName>Edit-EnergyPoints-Table</DisplayName>
     <Description>Table view to show or edit multiple records.</Description>
+    <LoginRequired>&lt;PRoles&gt;NOT_ANONYMOUS&lt;/PRoles&gt;</LoginRequired>
     <CheckSum>-430589557-18095</CheckSum>
   </Self>
   <ComposedOf>

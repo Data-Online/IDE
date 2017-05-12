@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<XMLDefinition Generator="Iron Speed Designer" Version="12.0" Type="USER">
+<XMLDefinition Generator="Iron Speed Designer" Version="12.2" Type="USER">
   <ColumnDefinition>
     <Column InternalName="0" Priority="1" ColumnNum="0">
       <columnName>UserId</columnName>

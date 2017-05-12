@@ -21,195 +21,196 @@ using BaseClasses.Utils;
 using ReportTools.ReportCreator;
 using ReportTools.Shared;
 
-        
+
 using IDE.Business;
 using IDE.Data;
 using IDE.UI;
 using IDE;
-		
+using System.Configuration;
+
 
 #endregion
 
-  
+
 namespace IDE.UI.Controls.Add_InvoiceSummaries_Meridian
 {
-  
 
-#region "Section 1: Place your customizations here."
 
-    
-//public class EnergyChargesTableControlRow : BaseEnergyChargesTableControlRow
-//{
-//      
-//        // The BaseEnergyChargesTableControlRow implements code for a ROW within the
-//        // the EnergyChargesTableControl table.  The BaseEnergyChargesTableControlRow implements the DataBind and SaveData methods.
-//        // The loading of data is actually performed by the LoadData method in the base class of EnergyChargesTableControl.
-//
-//        // This is the ideal place to add your code customizations. For example, you can override the DataBind, 
-//        // SaveData, GetUIData, and Validate methods.
-//        
-//}
-//
+    #region "Section 1: Place your customizations here."
 
-  
 
-//public class EnergyChargesTableControl : BaseEnergyChargesTableControl
-//{
-//    // The BaseEnergyChargesTableControl class implements the LoadData, DataBind, CreateWhereClause
-//    // and other methods to load and display the data in a table control.
-//
-//    // This is the ideal place to add your code customizations. You can override the LoadData and CreateWhereClause,
-//    // The EnergyChargesTableControlRow class offers another place where you can customize
-//    // the DataBind, GetUIData, SaveData and Validate methods specific to each row displayed on the table.
-//    
-//}
-//
+    //public class EnergyChargesTableControlRow : BaseEnergyChargesTableControlRow
+    //{
+    //      
+    //        // The BaseEnergyChargesTableControlRow implements code for a ROW within the
+    //        // the EnergyChargesTableControl table.  The BaseEnergyChargesTableControlRow implements the DataBind and SaveData methods.
+    //        // The loading of data is actually performed by the LoadData method in the base class of EnergyChargesTableControl.
+    //
+    //        // This is the ideal place to add your code customizations. For example, you can override the DataBind, 
+    //        // SaveData, GetUIData, and Validate methods.
+    //        
+    //}
+    //
 
-  
-//public class NetworkChargesTableControlRow : BaseNetworkChargesTableControlRow
-//{
-//      
-//        // The BaseNetworkChargesTableControlRow implements code for a ROW within the
-//        // the NetworkChargesTableControl table.  The BaseNetworkChargesTableControlRow implements the DataBind and SaveData methods.
-//        // The loading of data is actually performed by the LoadData method in the base class of NetworkChargesTableControl.
-//
-//        // This is the ideal place to add your code customizations. For example, you can override the DataBind, 
-//        // SaveData, GetUIData, and Validate methods.
-//        
-//}
-//
 
-  
 
-//public class NetworkChargesTableControl : BaseNetworkChargesTableControl
-//{
-//    // The BaseNetworkChargesTableControl class implements the LoadData, DataBind, CreateWhereClause
-//    // and other methods to load and display the data in a table control.
-//
-//    // This is the ideal place to add your code customizations. You can override the LoadData and CreateWhereClause,
-//    // The NetworkChargesTableControlRow class offers another place where you can customize
-//    // the DataBind, GetUIData, SaveData and Validate methods specific to each row displayed on the table.
-//    
-//}
-//
+    //public class EnergyChargesTableControl : BaseEnergyChargesTableControl
+    //{
+    //    // The BaseEnergyChargesTableControl class implements the LoadData, DataBind, CreateWhereClause
+    //    // and other methods to load and display the data in a table control.
+    //
+    //    // This is the ideal place to add your code customizations. You can override the LoadData and CreateWhereClause,
+    //    // The EnergyChargesTableControlRow class offers another place where you can customize
+    //    // the DataBind, GetUIData, SaveData and Validate methods specific to each row displayed on the table.
+    //    
+    //}
+    //
 
-  
-public class InvoiceSummariesRecordControl : BaseInvoiceSummariesRecordControl
-{
-public InvoiceSummariesRecordControl()
-{
-#region "Code Customization"
 
-    // The following line will be inserted inside the
-    // constructor for page class.
-    this.Init += new EventHandler(MultipleDropdown_MyInit);
-    
-#endregion
-}
-      
+    //public class NetworkChargesTableControlRow : BaseNetworkChargesTableControlRow
+    //{
+    //      
+    //        // The BaseNetworkChargesTableControlRow implements code for a ROW within the
+    //        // the NetworkChargesTableControl table.  The BaseNetworkChargesTableControlRow implements the DataBind and SaveData methods.
+    //        // The loading of data is actually performed by the LoadData method in the base class of NetworkChargesTableControl.
+    //
+    //        // This is the ideal place to add your code customizations. For example, you can override the DataBind, 
+    //        // SaveData, GetUIData, and Validate methods.
+    //        
+    //}
+    //
+
+
+
+    //public class NetworkChargesTableControl : BaseNetworkChargesTableControl
+    //{
+    //    // The BaseNetworkChargesTableControl class implements the LoadData, DataBind, CreateWhereClause
+    //    // and other methods to load and display the data in a table control.
+    //
+    //    // This is the ideal place to add your code customizations. You can override the LoadData and CreateWhereClause,
+    //    // The NetworkChargesTableControlRow class offers another place where you can customize
+    //    // the DataBind, GetUIData, SaveData and Validate methods specific to each row displayed on the table.
+    //    
+    //}
+    //
+
+
+    public class InvoiceSummariesRecordControl : BaseInvoiceSummariesRecordControl
+    {
+        public InvoiceSummariesRecordControl()
+        {
+            #region "Code Customization"
+
+            // The following line will be inserted inside the
+            // constructor for page class.
+            this.Init += new EventHandler(MultipleDropdown_MyInit);
+
+            #endregion
+        }
+
         // The BaseInvoiceSummariesRecordControl implements the LoadData, DataBind and other
         // methods to load and display the data in a table control.
 
         // This is the ideal place to add your code customizations. For example, you can override the LoadData, 
         // CreateWhereClause, DataBind, SaveData, GetUIData, and Validate methods.
 
-    //public override void Validate()
-    //{
-    //    // Add custom validation for any control within this panel.
-    //    // Example.  If you have a State ASP:Textbox control
-    //    // if (this.State.Text != "CA")
-    //    //    throw new Exception("State must be CA (California).");
-    //    // The Validate method is common across all controls within
-    //    // this panel so you can validate multiple fields, but report
-    //    // one error message.
+        //public override void Validate()
+        //{
+        //    // Add custom validation for any control within this panel.
+        //    // Example.  If you have a State ASP:Textbox control
+        //    // if (this.State.Text != "CA")
+        //    //    throw new Exception("State must be CA (California).");
+        //    // The Validate method is common across all controls within
+        //    // this panel so you can validate multiple fields, but report
+        //    // one error message.
 
-    //    string validationFormula = "";
-    //    string fullValidationMessage = "";
-    //    string validationMessage = "";
+        //    string validationFormula = "";
+        //    string fullValidationMessage = "";
+        //    string validationMessage = "";
 
-    //    // Validate InvoiceDate Control
-    //    validationMessage = EvaluateFormula("IF(ParseDate(InvoiceSummariesRecordControl.InvoiceDate.Text) <= ParseDate(InvoiceSummariesRecordControl.PeriodEnd.Text), \"Error: Invoice date before billing period\", \"\")", this.DataSource);
-    //    if (validationMessage != "" && validationMessage.ToLower() != "true")
-    //        fullValidationMessage += validationMessage + "\r\n";
+        //    // Validate InvoiceDate Control
+        //    validationMessage = EvaluateFormula("IF(ParseDate(InvoiceSummariesRecordControl.InvoiceDate.Text) <= ParseDate(InvoiceSummariesRecordControl.PeriodEnd.Text), \"Error: Invoice date before billing period\", \"\")", this.DataSource);
+        //    if (validationMessage != "" && validationMessage.ToLower() != "true")
+        //        fullValidationMessage += validationMessage + "\r\n";
 
-    //    // Validate InvoiceDueDate Control
-    //    validationMessage = EvaluateFormula("IF(ParseDate(InvoiceSummariesRecordControl.InvoiceDueDate.Text) < ParseDate(InvoiceSummariesRecordControl.InvoiceDate.Text), \"Error: Invoice Due Date before Invoice Date\", \"\")", this.DataSource);
-    //    if (validationMessage != "" && validationMessage.ToLower() != "true")
-    //        fullValidationMessage += validationMessage + "\r\n";
+        //    // Validate InvoiceDueDate Control
+        //    validationMessage = EvaluateFormula("IF(ParseDate(InvoiceSummariesRecordControl.InvoiceDueDate.Text) < ParseDate(InvoiceSummariesRecordControl.InvoiceDate.Text), \"Error: Invoice Due Date before Invoice Date\", \"\")", this.DataSource);
+        //    if (validationMessage != "" && validationMessage.ToLower() != "true")
+        //        fullValidationMessage += validationMessage + "\r\n";
 
-    //    // Validate InvoiceTotal Control
-    //    validationFormula = "IF(ParseDecimal(InvoiceSummariesRecordControl.InvoiceTotal.Text)";
-    //    validationFormula += " <> (ParseDecimal(InvoiceSummariesRecordControl.EnergyChargesTotal.Text)";
-    //    validationFormula += " +   ParseDecimal(InvoiceSummariesRecordControl.MiscChargesTotal.Text)";
-    //    validationFormula += " +   ParseDecimal(InvoiceSummariesRecordControl.NetworkChargesTotal.Text)";
-    //    validationFormula += " +   ParseDecimal(InvoiceSummariesRecordControl,GstTotal.Text))";
-    //    validationFormula += ", \"Error: Bill charges do not sum correctly, please check values.\", \"\")";
-    //    validationMessage = EvaluateFormula(validationFormula, this.DataSource);
-    //    if (validationMessage != "" && validationMessage.ToLower() != "true")
-    //        fullValidationMessage += validationMessage + "\r\n";
+        //    // Validate InvoiceTotal Control
+        //    validationFormula = "IF(ParseDecimal(InvoiceSummariesRecordControl.InvoiceTotal.Text)";
+        //    validationFormula += " <> (ParseDecimal(InvoiceSummariesRecordControl.EnergyChargesTotal.Text)";
+        //    validationFormula += " +   ParseDecimal(InvoiceSummariesRecordControl.MiscChargesTotal.Text)";
+        //    validationFormula += " +   ParseDecimal(InvoiceSummariesRecordControl.NetworkChargesTotal.Text)";
+        //    validationFormula += " +   ParseDecimal(InvoiceSummariesRecordControl,GstTotal.Text))";
+        //    validationFormula += ", \"Error: Bill charges do not sum correctly, please check values.\", \"\")";
+        //    validationMessage = EvaluateFormula(validationFormula, this.DataSource);
+        //    if (validationMessage != "" && validationMessage.ToLower() != "true")
+        //        fullValidationMessage += validationMessage + "\r\n";
 
-    //    // Validate PeriodEnd Control
-    //    validationMessage = EvaluateFormula("IF(ParseDate(InvoiceSummariesRecordControl.PeriodEnd.Text) <= ParseDate(InvoiceSummariesRecordControl.PeriodStart.Text), \"Error: Period End Date before Period Start\", \"\")", this.DataSource);
-    //    if (validationMessage != "" && validationMessage.ToLower() != "true")
-    //        fullValidationMessage += validationMessage + "\r\n";
+        //    // Validate PeriodEnd Control
+        //    validationMessage = EvaluateFormula("IF(ParseDate(InvoiceSummariesRecordControl.PeriodEnd.Text) <= ParseDate(InvoiceSummariesRecordControl.PeriodStart.Text), \"Error: Period End Date before Period Start\", \"\")", this.DataSource);
+        //    if (validationMessage != "" && validationMessage.ToLower() != "true")
+        //        fullValidationMessage += validationMessage + "\r\n";
 
-    //    if (fullValidationMessage != "")
-    //        throw new Exception(fullValidationMessage);
+        //    if (fullValidationMessage != "")
+        //        throw new Exception(fullValidationMessage);
 
 
 
-    //}       
+        //}       
 
-		public override void SetSupplierId()
+        public override void SetSupplierId()
         {
-            				
-        
-        
+
+
+
             string selectedValue = null;
-            
+
             // figure out the selectedValue
-                  
-            
-            
+
+
+
             // Set the SupplierId QuickSelector on the webpage with value from the
             // DatabaseCimscoPortal%dbo.InvoiceSummaries database record.
-            
+
             // this.DataSource is the DatabaseCimscoPortal%dbo.InvoiceSummaries record retrieved from the database.
             // this.SupplierId is the ASP:QuickSelector on the webpage.
-            
+
             // You can modify this method directly, or replace it with a call to
             //     base.SetSupplierId();
             // and add your own custom code before or after the call to the base function.
 
-            
+
             // Default Value could also be NULL.
             if (this.DataSource != null && this.DataSource.IsCreated)
             {
-                
+
                 selectedValue = this.DataSource.SupplierId.ToString();
-                
+
             }
             else
             {
-                
-            
+
+
                 selectedValue = "2"; //EvaluateFormula("URL(\"SupplierId\")");
-                
+
             }
 
-            
+
             // Add the Please Select item.
             if (selectedValue == null || selectedValue == "")
-                  MiscUtils.ResetSelectedItem(this.SupplierId, new ListItem(this.Page.GetResourceValue("Txt:PleaseSelect", "IDE"), "--PLEASE_SELECT--"));
-                        
-                  
+                MiscUtils.ResetSelectedItem(this.SupplierId, new ListItem(this.Page.GetResourceValue("Txt:PleaseSelect", "IDE"), "--PLEASE_SELECT--"));
+
+
             // Populate the item(s) to the control
-            
+
             this.SupplierId.SetFieldMaxLength(50);
-            
-            System.Collections.Generic.IDictionary<string, object> variables = new System.Collections.Generic.Dictionary<string, object>();              
+
+            System.Collections.Generic.IDictionary<string, object> variables = new System.Collections.Generic.Dictionary<string, object>();
             FormulaEvaluator evaluator = new FormulaEvaluator();
-              
+
             if (selectedValue != null &&
                 selectedValue.Trim() != "" &&
                 !MiscUtils.SetSelectedValue(this.SupplierId, selectedValue) &&
@@ -217,7 +218,7 @@ public InvoiceSummariesRecordControl()
             {
 
                 // construct a whereclause to query a record with DatabaseCimscoPortal%dbo.EnergySuppliers.SupplierId = selectedValue
-                    
+
                 CompoundFilter filter2 = new CompoundFilter(CompoundFilter.CompoundingOperators.And_Operator, null);
                 WhereClause whereClause2 = new WhereClause();
                 filter2.AddFilter(new BaseClasses.Data.ColumnValueFilter(EnergySuppliersTable.SupplierId, selectedValue, BaseClasses.Data.BaseFilter.ComparisonOperator.EqualsTo, false));
@@ -227,177 +228,252 @@ public InvoiceSummariesRecordControl()
                 try
                 {
                     EnergySuppliersRecord[] rc = EnergySuppliersTable.GetRecords(whereClause2, new OrderBy(false, false), 0, 1);
-                    System.Collections.Generic.IDictionary<string, object> vars = new System.Collections.Generic.Dictionary<string, object> ();
+                    System.Collections.Generic.IDictionary<string, object> vars = new System.Collections.Generic.Dictionary<string, object>();
                     // if find a record, add it to the dropdown and set it as selected item
                     if (rc != null && rc.Length == 1)
                     {
                         EnergySuppliersRecord itemValue = rc[0];
                         string cvalue = null;
-                        string fvalue = null;                        
+                        string fvalue = null;
                         if (itemValue.SupplierIdSpecified)
-                            cvalue = itemValue.SupplierId.ToString(); 
+                            cvalue = itemValue.SupplierId.ToString();
                         Boolean _isExpandableNonCompositeForeignKey = InvoiceSummariesTable.Instance.TableDefinition.IsExpandableNonCompositeForeignKey(InvoiceSummariesTable.SupplierId);
-                        if(_isExpandableNonCompositeForeignKey && InvoiceSummariesTable.SupplierId.IsApplyDisplayAs)
+                        if (_isExpandableNonCompositeForeignKey && InvoiceSummariesTable.SupplierId.IsApplyDisplayAs)
                             fvalue = InvoiceSummariesTable.GetDFKA(itemValue, InvoiceSummariesTable.SupplierId);
                         if ((!_isExpandableNonCompositeForeignKey) || (String.IsNullOrEmpty(fvalue)))
                             fvalue = itemValue.Format(EnergySuppliersTable.SupplierName);
-                            					
+
                         if (fvalue == null || fvalue.Trim() == "") fvalue = cvalue;
-                        MiscUtils.ResetSelectedItem(this.SupplierId, new ListItem(fvalue, cvalue));                      
+                        MiscUtils.ResetSelectedItem(this.SupplierId, new ListItem(fvalue, cvalue));
                     }
                 }
                 catch
                 {
                 }
 
-                    					
-            }					
-                        
-              string url = this.ModifyRedirectUrl("../EnergySuppliers/EnergySuppliers-QuickSelector.aspx", "", true);
-              
-              url = this.Page.ModifyRedirectUrl(url, "", true);                                  
-              
-              url += "?Target=" + this.SupplierId.ClientID + "&DFKA=" + (this.Page as BaseApplicationPage).Encrypt("SupplierName")+ "&IndexField=" + (this.Page as BaseApplicationPage).Encrypt("SupplierId")+ "&EmptyValue=" + (this.Page as BaseApplicationPage).Encrypt("--PLEASE_SELECT--") + "&EmptyDisplayText=" + (this.Page as BaseApplicationPage).Encrypt(this.Page.GetResourceValue("Txt:PleaseSelect"))+ "&Mode=" + (this.Page as BaseApplicationPage).Encrypt("FieldValueSingleSelection") + "&RedirectStyle=" + (this.Page as BaseApplicationPage).Encrypt("Popup");
-              
-              this.SupplierId.Attributes["onClick"] = "initializePopupPage(this, '" + url + "', " + Convert.ToString(SupplierId.AutoPostBack).ToLower() + ", event); return false;";
-                  
-                
-                  
+
+            }
+
+            string url = this.ModifyRedirectUrl("../EnergySuppliers/EnergySuppliers-QuickSelector.aspx", "", true);
+
+            url = this.Page.ModifyRedirectUrl(url, "", true);
+
+            url += "?Target=" + this.SupplierId.ClientID + "&DFKA=" + (this.Page as BaseApplicationPage).Encrypt("SupplierName") + "&IndexField=" + (this.Page as BaseApplicationPage).Encrypt("SupplierId") + "&EmptyValue=" + (this.Page as BaseApplicationPage).Encrypt("--PLEASE_SELECT--") + "&EmptyDisplayText=" + (this.Page as BaseApplicationPage).Encrypt(this.Page.GetResourceValue("Txt:PleaseSelect")) + "&Mode=" + (this.Page as BaseApplicationPage).Encrypt("FieldValueSingleSelection") + "&RedirectStyle=" + (this.Page as BaseApplicationPage).Encrypt("Popup");
+
+            this.SupplierId.Attributes["onClick"] = "initializePopupPage(this, '" + url + "', " + Convert.ToString(SupplierId.AutoPostBack).ToLower() + ", event); return false;";
+
+
+
+        }
+        #region "Handle Site ID lookup based on ICP number selected"
+
+
+        /// <summary>
+        /// This method sets the AutoPostBack property of the field that triggers a change.
+        /// </summary>
+        /// <param name="sender">The object that raised the init event.</param>
+        /// <param name="e">The object that contains the event data of the init event.</param>
+        private void MultipleDropdown_MyInit(object sender, System.EventArgs e)
+        {
+            // AutoPostBack sets or retrieves a value that indicates whether or not the control
+            // posts back to the server each time a user interacts with the control. 
+            // if change in second drop down list updates the first then set
+            // AutoPostback of the second dropdown list to true and implement 
+            EnergyPointId.AutoPostBack = true;
+            SiteId.AutoPostBack = true;
+
+
+            // Define selected index changed event handlers
+            // for first Dropdown list.
+            this.EnergyPointId.SelectedIndexChanged +=
+            new EventHandler(EnergyPointId_SelectedIndexChanged);
+
+            SiteId.Enabled = false;
         }
 
-#region "Code Customization"
 
-/// <summary>
-/// This method sets the AutoPostBack property of the field that triggers a change.
-/// </summary>
-/// <param name="sender">The object that raised the init event.</param>
-/// <param name="e">The object that contains the event data of the init event.</param>
-private void MultipleDropdown_MyInit(object sender, System.EventArgs e) 
-{   
-	// AutoPostBack sets or retrieves a value that indicates whether or not the control
-	// posts back to the server each time a user interacts with the control. 
-	// if change in second drop down list updates the first then set
-	// AutoPostback of the second dropdown list to true and implement 
-	EnergyPointId.AutoPostBack = true;
-	SiteId.AutoPostBack = true;
-    
-
-    // Define selected index changed event handlers
-    // for first Dropdown list.
-    this.EnergyPointId.SelectedIndexChanged += 
-    new EventHandler(EnergyPointId_SelectedIndexChanged);
-    
-    SiteId.Enabled = false;
-}
-
-#endregion
-
-#region "Code Customization"
-
-/// <summary>
-/// This method is called when selected index changes in EnergyPointId.
-/// </summary>
-protected override void EnergyPointId_SelectedIndexChanged(object sender, System.EventArgs e) 
-{ 
-    SiteId.Enabled = true;   
-
-    // SiteId DropDownList will display 100 items.
-    // You can set the number of items displayed in the DropDownList.
-    this.PopulateSiteIdDropDown(100);    
-} 
-    
-#endregion
-
-#region "Code Customization"
-
-/// <summary>
-/// Override this method to filter the  SiteIdDropDownList
-/// based on the value selected for the EnergyPointIdDropDownList
-/// </summary>
-protected void PopulateSiteIdDropDown(int maxItems)
-{
-    // Set up the WHERE clause.
-    // Create the WHERE clause to filter the second dropdown list based on the 
-    // selected value in the first dropdown list.
-    WhereClause wc = new WhereClause();
-    string selectedValue = EnergyPointId.SelectedValue;  
-    string selectedText = EnergyPointId.SelectedItem.Text;   
-    wc.iAND(InvoiceSummariesTable.EnergyPointId, BaseFilter.ComparisonOperator.EqualsTo, selectedValue);
-
-    // Clear the contents of second dropdown list.
-    this.SiteId.Items.Clear();    
-    
-    // Add "Please Select" string to second dropdown list.   
-    this.SiteId.Items.Insert(0, new ListItem(Page.GetResourceValue("Txt:PleaseSelect", "IDE"), "--PLEASE_SELECT--"));                      
-    
-    if(BaseClasses.Utils.StringUtils.InvariantUCase(selectedText).Equals(BaseClasses.Utils.StringUtils.InvariantUCase(Page.GetResourceValue("Txt:PleaseSelect", "IDE"))))
-    {
-        // if "Please Select" string is selected for first dropdown list,
-        // then do not continue populating the second dropdown list.
-        return;
-    }    
-    
-    // Get the records using the created where clause.
-    foreach ( InvoiceSummariesRecord itemValue in InvoiceSummariesTable.GetRecords(wc, null, 0, maxItems))
-    {
-        if(itemValue.SiteIdSpecified)
+        /// <summary>
+        /// This method is called when selected index changes in EnergyPointId.
+        /// </summary>
+        protected override void EnergyPointId_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-            // In each record, obtain the value of second dropdown field if value exists,
-            // create an item for it and add it to the list.
-            string cvalue = itemValue.SiteId.ToString();
-            string fvalue  = itemValue.Format(InvoiceSummariesTable.SiteId);
-            ListItem item  = new ListItem(fvalue, cvalue);
-            if (! this.SiteId.Items.Contains(item))
+            //SiteId.Enabled = true;
+
+            // SiteId DropDownList will display 100 items.
+            // You can set the number of items displayed in the DropDownList.
+            this.PopulateSiteIdDropDown(100);
+        }
+
+
+        /// <summary>
+        /// Override this method to filter the  SiteIdDropDownList
+        /// based on the value selected for the EnergyPointIdDropDownList
+        /// </summary>
+        protected void PopulateSiteIdDropDown(int maxItems)
+        {
+            string selectedValue = EnergyPointId.SelectedValue;
+            string selectedText = EnergyPointId.SelectedItem.Text;
+            string _cvalue;
+            string _fvalue;
+            SitesRecord[] _siteRecord;
+            string _setNotSet = ConfigurationManager.AppSettings["SiteNotSet"];
+
+            this.SiteId.Items.Clear();
+
+            try
             {
-                this.SiteId.Items.Add(item);        
+                // Lookup using CimscoNZ source table, get SiteId
+                // This should not fail, as Portal data is sourced from CimscoNZ
+                WhereClause wc2 = new WhereClause();
+                wc2.iAND(EnergyPoints1Table.EnergyPointId, BaseFilter.ComparisonOperator.EqualsTo, selectedValue);
+                EnergyPoints1Record[] _EPSourceData = EnergyPoints1Table.GetRecords(wc2, null, 0, 1);
+                int _siteId = _EPSourceData[0].SiteId;
+
+                WhereClause wc3 = new WhereClause();
+                wc3.iAND(SitesTable.SiteId, BaseFilter.ComparisonOperator.EqualsTo, _siteId.ToString());
+                // Get record from Portal database
+                GetSiteEntry(out _cvalue, out _fvalue, out _siteRecord, wc3);
             }
-        }        
-    }                    
+            catch (Exception ex)
+            {
+                WhereClause wc4 = new WhereClause();
+                wc4.iAND(SitesTable.SiteName, BaseFilter.ComparisonOperator.EqualsTo, _setNotSet);
+                GetSiteEntry(out _cvalue, out _fvalue, out _siteRecord, wc4);
+            }
 
-    // Select "Please Select" string in the second dropdown list.
-    this.SiteId.SelectedIndex = 0;
-}
-   
-#endregion
-}
+            // Add "Please Select" string to second dropdown list.   
+            ////this.SiteId.Items.Insert(0, new ListItem(Page.GetResourceValue("Txt:PleaseSelect", "IDE"), "--PLEASE_SELECT--"));                      
 
-  
+            if (BaseClasses.Utils.StringUtils.InvariantUCase(selectedText).Equals(BaseClasses.Utils.StringUtils.InvariantUCase(Page.GetResourceValue("Txt:PleaseSelect", "IDE"))))
+            {
+                // if "Please Select" string is selected for first dropdown list,
+                // then do not continue populating the second dropdown list.
+                return;
+            }
 
-public class OtherChargesRecordControl : BaseOtherChargesRecordControl
-{
-      
+            ListItem item = new ListItem(_fvalue, _cvalue);
+            if (!this.SiteId.Items.Contains(item))
+            {
+                this.SiteId.Items.Add(item);
+            }
+
+
+            // Select "Please Select" string in the second dropdown list.
+            this.SiteId.SelectedIndex = 0;
+        }
+
+        private static void GetSiteEntry(out string _cvalue, out string _fvalue, out SitesRecord[] _siteRecord, WhereClause wc3)
+        {
+            _siteRecord = SitesTable.GetRecords(wc3, null, 0, 1);
+            _cvalue = _siteRecord[0].SiteId.ToString();
+            _fvalue = _siteRecord[0].Format(SitesTable.SiteName);
+        }
+
+
+        public override void SetSiteId()
+        {
+
+            string selectedValue = null;
+
+            // figure out the selectedValue
+
+            // Set the SiteId DropDownList on the webpage with value from the
+            // DatabaseCimscoPortal%dbo.InvoiceSummaries database record.
+
+            // this.DataSource is the DatabaseCimscoPortal%dbo.InvoiceSummaries record retrieved from the database.
+            // this.SiteId is the ASP:DropDownList on the webpage.
+
+            // You can modify this method directly, or replace it with a call to
+            //     base.SetSiteId();
+            // and add your own custom code before or after the call to the base function.
+
+
+            // Default Value could also be NULL.
+            if (this.DataSource != null && this.DataSource.IsCreated)
+            {
+                selectedValue = this.DataSource.SiteId.ToString();
+            }
+            else
+            {
+                selectedValue = EvaluateFormula("URL(\"SiteId\")");
+            }
+
+
+
+            // Populate the item(s) to the control
+            this.SiteId.Items.Clear();
+
+            // 1. Setup the static list items        
+
+            // Add the Please Select item.
+            this.SiteId.Items.Insert(0, new ListItem("**select connection #**", "--PLEASE_SELECT--"));
+            //this.PopulateSiteIdDropDownList(selectedValue, 100);
+
+
+        }
+        #endregion
+    }
+
+
+
+    public class OtherChargesRecordControl : BaseOtherChargesRecordControl
+    {
+
         // The BaseOtherChargesRecordControl implements the LoadData, DataBind and other
         // methods to load and display the data in a table control.
 
         // This is the ideal place to add your code customizations. For example, you can override the LoadData, 
         // CreateWhereClause, DataBind, SaveData, GetUIData, and Validate methods.
-        
-}
-public class NetworkChargesRecordControl : BaseNetworkChargesRecordControl
-{
-      
+
+    }
+    public class NetworkChargesRecordControl : BaseNetworkChargesRecordControl
+    {
+
         // The BaseNetworkChargesRecordControl implements the LoadData, DataBind and other
         // methods to load and display the data in a table control.
 
         // This is the ideal place to add your code customizations. For example, you can override the LoadData, 
         // CreateWhereClause, DataBind, SaveData, GetUIData, and Validate methods.
-        
-}
-public class EnergyChargesRecordControl : BaseEnergyChargesRecordControl
-{
-      
+
+    }
+    public class EnergyChargesRecordControl : BaseEnergyChargesRecordControl
+    {
+
         // The BaseEnergyChargesRecordControl implements the LoadData, DataBind and other
         // methods to load and display the data in a table control.
 
         // This is the ideal place to add your code customizations. For example, you can override the LoadData, 
         // CreateWhereClause, DataBind, SaveData, GetUIData, and Validate methods.
-        
-}
-#endregion
 
-  
+    }
+    //public class EnergyPoints1TableControl : BaseEnergyPoints1TableControl
+    //{
+    //    // The BaseEnergyPoints1TableControl class implements the LoadData, DataBind, CreateWhereClause
+    //    // and other methods to load and display the data in a table control.
+    //
+    //    // This is the ideal place to add your code customizations. You can override the LoadData and CreateWhereClause,
+    //    // The EnergyPoints1TableControlRow class offers another place where you can customize
+    //    // the DataBind, GetUIData, SaveData and Validate methods specific to each row displayed on the table.
+    //    
+    //}
+    //
+    //public class EnergyPoints1TableControlRow : BaseEnergyPoints1TableControlRow
+    //{
+    //      
+    //        // The BaseEnergyPoints1TableControlRow implements code for a ROW within the
+    //        // the EnergyPoints1TableControl table.  The BaseEnergyPoints1TableControlRow implements the DataBind and SaveData methods.
+    //        // The loading of data is actually performed by the LoadData method in the base class of EnergyPoints1TableControl.
+    //
+    //        // This is the ideal place to add your code customizations. For example, you can override the DataBind, 
+    //        // SaveData, GetUIData, and Validate methods.
+    //        
+    //}
+    //
+    #endregion
 
-#region "Section 2: Do not modify this section."
+
+
+    #region "Section 2: Do not modify this section."
     
     
 // Base class for the EnergyChargesRecordControl control on the Add_InvoiceSummaries_Meridian page.
@@ -8053,8 +8129,7 @@ public class BaseOtherChargesRecordControl : IDE.UI.BaseApplicationRecordControl
   
 
 #endregion
-    
-  
+
+
 }
 
-  

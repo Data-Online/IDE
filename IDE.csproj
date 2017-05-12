@@ -605,6 +605,34 @@
     <Compile Include="InvoiceSummaries\Add-InvoiceSummaries-Contact.Controls.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="EnergyPoints1\Show-EnergyPoints1.aspx.cs">
+      <DependentUpon>Show-EnergyPoints1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EnergyPoints1\Show-EnergyPoints1.Controls.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EnergyPoints1\Show-EnergyPoints-Table1.aspx.cs">
+      <DependentUpon>Show-EnergyPoints-Table1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EnergyPoints1\Show-EnergyPoints-Table1.Controls.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EnergySuppliers1\EnergySuppliers-QuickSelector1.aspx.cs">
+      <DependentUpon>EnergySuppliers-QuickSelector1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EnergySuppliers1\EnergySuppliers-QuickSelector1.Controls.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EnergyPoints1\EnergyPoints-QuickSelector1.aspx.cs" >
+      <DependentUpon>EnergyPoints-QuickSelector1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EnergyPoints1\EnergyPoints-QuickSelector1.Controls.cs" >
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="BaseClasses\Readme.txt" />
@@ -908,6 +936,10 @@
     <Content Include="EnergySuppliers\EnergySuppliers-QuickSelector.aspx" />
     <Content Include="InvoiceSummaries\Edit-InvoiceSummaries-Mercury.aspx" />
     <Content Include="InvoiceSummaries\Add-InvoiceSummaries-Contact.aspx" />
+    <Content Include="EnergyPoints1\Show-EnergyPoints1.aspx" />
+    <Content Include="EnergyPoints1\Show-EnergyPoints-Table1.aspx" />
+    <Content Include="EnergySuppliers1\EnergySuppliers-QuickSelector1.aspx" />
+    <Content Include="EnergyPoints1\EnergyPoints-QuickSelector1.aspx"  />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Global.asax.resx">

@@ -327,7 +327,7 @@ public partial class Show_Sites_Table
             // Check if user has access to this page.  Redirects to either sign-in page
             // or 'no access' page if not. Does not do anything if role-based security
             // is not turned on, but you can override to add your own security.
-            this.Authorize("");
+            this.Authorize("NOT_ANONYMOUS");
              if (!this.IsPostBack)
              {
             

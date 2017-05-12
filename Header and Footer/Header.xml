@@ -75,7 +75,7 @@
         </Attribute>
         <Attribute>
           <Name>ImageURL</Name>
-          <Value>../Images/logo.png</Value>
+          <Value>../Images/eekLogoNoText.png</Value>
         </Attribute>
         <Attribute>
           <Name>style</Name>
