@@ -108,40 +108,6 @@
       <InsideItemTemplate>true</InsideItemTemplate>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>ActionsButton</Name>
-      <Type>Button</Type>
-      <Layout>..\Shared\ThemeButtonWithArrow.html</Layout>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>Button-CausesValidation</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Button-CommandName</Name>
-          <Value>Custom</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Button-Consumers</Name>
-          <Value>page</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Button-Onclientclick</Name>
-          <Value>return ISD_ShowPopupPanel('ActionsDiv','ActionsButton',this);</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Button-Text</Name>
-          <Value>Btn:Actions</Value>
-          <Type>ResourceReference</Type>
-        </Attribute>
-        <Attribute>
-          <Name>Button-ToolTip</Name>
-          <Value>Btn:Actions</Value>
-          <Type>ResourceReference</Type>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>InvoiceSummariesTableControl</InsideControl>
-    </ContainedComponent>
-    <ContainedComponent>
       <Name>Alert</Name>
       <Type>Aspx</Type>
       <PassthroughAttributes>
@@ -1381,6 +1347,22 @@
       <InsideItemTemplate>true</InsideItemTemplate>
     </ContainedComponent>
     <ContainedComponent>
+      <Name>Contact</Name>
+      <Type>Literal</Type>
+      <PassthroughAttributes>
+        <Attribute>
+          <Name>InternalUse:TreatAs</Name>
+          <Value>FieldValue</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Text</Name>
+          <Value>Contact</Value>
+        </Attribute>
+      </PassthroughAttributes>
+      <InsideControl>InvoiceSummariesTableControl</InsideControl>
+      <InsideItemTemplate>true</InsideItemTemplate>
+    </ContainedComponent>
+    <ContainedComponent>
       <Name>ContainerId</Name>
       <Type>Literal</Type>
       <PassthroughAttributes>
@@ -2041,50 +2023,6 @@
       <InsideItemTemplate>true</InsideItemTemplate>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>ExcelButton</Name>
-      <Type>ImageButton</Type>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>CausesValidation</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>CommandName</Name>
-          <Value>ExportDataExcel</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Consumers</Name>
-          <Value>InvoiceSummariesTableControl</Value>
-        </Attribute>
-        <Attribute>
-          <Name>ImageURL</Name>
-          <Value>../Images/ButtonBarExcelExport.gif</Value>
-        </Attribute>
-        <Attribute>
-          <Name>onmouseout</Name>
-          <Value>this.src='../Images/ButtonBarExcelExport.gif'</Value>
-        </Attribute>
-        <Attribute>
-          <Name>onmouseover</Name>
-          <Value>this.src='../Images/ButtonBarExcelExportOver.gif'</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PostBack</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>ToolTip</Name>
-          <Value>Btn:ExportExcel</Value>
-          <Type>ResourceReference</Type>
-        </Attribute>
-        <Attribute>
-          <Name>Visible</Name>
-          <Value>False</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>InvoiceSummariesTableControl</InsideControl>
-    </ContainedComponent>
-    <ContainedComponent>
       <Name>ExpandRowButton</Name>
       <Type>ImageButton</Type>
       <PassthroughAttributes>
@@ -2408,54 +2346,6 @@
       </PassthroughAttributes>
       <InsideControl>InvoiceSummariesTableControl</InsideControl>
       <InsideItemTemplate>true</InsideItemTemplate>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>ImportButton</Name>
-      <Type>ImageButton</Type>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>CausesValidation</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>CommandName</Name>
-          <Value>ImportCSV</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Consumers</Name>
-          <Value>page</Value>
-        </Attribute>
-        <Attribute>
-          <Name>ImageURL</Name>
-          <Value>../Images/ButtonBarImport.gif</Value>
-        </Attribute>
-        <Attribute>
-          <Name>onmouseout</Name>
-          <Value>this.src='../Images/ButtonBarImport.gif'</Value>
-        </Attribute>
-        <Attribute>
-          <Name>onmouseover</Name>
-          <Value>this.src='../Images/ButtonBarImportOver.gif'</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PostBack</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>RedirectURL</Name>
-          <Value>../Shared/SelectFileToImport.aspx?TableName=InvoiceSummaries</Value>
-        </Attribute>
-        <Attribute>
-          <Name>ToolTip</Name>
-          <Value>Btn:Import</Value>
-          <Type>ResourceReference</Type>
-        </Attribute>
-        <Attribute>
-          <Name>Visible</Name>
-          <Value>False</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>InvoiceSummariesTableControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
       <Name>InvoiceDate</Name>
@@ -3210,39 +3100,7 @@
       <InsideItemTemplate>true</InsideItemTemplate>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>Literal</Name>
-      <Type>Literal</Type>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>InternalUse:TreatAs</Name>
-          <Value>FieldValue</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Text</Name>
-          <Value>Meridian</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>InvoiceSummariesTableControl</InsideControl>
-      <InsideItemTemplate>true</InsideItemTemplate>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>Literal1</Name>
-      <Type>Literal</Type>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>InternalUse:TreatAs</Name>
-          <Value>FieldValue</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Text</Name>
-          <Value>Contact</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>InvoiceSummariesTableControl</InsideControl>
-      <InsideItemTemplate>true</InsideItemTemplate>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>Literal2</Name>
+      <Name>Mercury</Name>
       <Type>Literal</Type>
       <PassthroughAttributes>
         <Attribute>
@@ -3252,6 +3110,22 @@
         <Attribute>
           <Name>Text</Name>
           <Value>Mercury</Value>
+        </Attribute>
+      </PassthroughAttributes>
+      <InsideControl>InvoiceSummariesTableControl</InsideControl>
+      <InsideItemTemplate>true</InsideItemTemplate>
+    </ContainedComponent>
+    <ContainedComponent>
+      <Name>Meridian</Name>
+      <Type>Literal</Type>
+      <PassthroughAttributes>
+        <Attribute>
+          <Name>InternalUse:TreatAs</Name>
+          <Value>FieldValue</Value>
+        </Attribute>
+        <Attribute>
+          <Name>Text</Name>
+          <Value>Meridian</Value>
         </Attribute>
       </PassthroughAttributes>
       <InsideControl>InvoiceSummariesTableControl</InsideControl>
@@ -4393,62 +4267,6 @@
       <InsideItemTemplate>true</InsideItemTemplate>
     </ContainedComponent>
     <ContainedComponent>
-      <Name>NewButton</Name>
-      <Type>ImageButton</Type>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>CausesValidation</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>CommandName</Name>
-          <Value>Redirect</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Consumers</Name>
-          <Value>page</Value>
-        </Attribute>
-        <Attribute>
-          <Name>ControlToUpdate</Name>
-          <Value>InvoiceSummariesTableControl</Value>
-        </Attribute>
-        <Attribute>
-          <Name>ImageURL</Name>
-          <Value>../Images/ButtonBarNew.gif</Value>
-        </Attribute>
-        <Attribute>
-          <Name>onmouseout</Name>
-          <Value>this.src='../Images/ButtonBarNew.gif'</Value>
-        </Attribute>
-        <Attribute>
-          <Name>onmouseover</Name>
-          <Value>this.src='../Images/ButtonBarNewOver.gif'</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PostBack</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>RedirectStyle</Name>
-          <Value>Popup</Value>
-        </Attribute>
-        <Attribute>
-          <Name>RedirectURL</Name>
-          <Value>../InvoiceSummaries/Add-InvoiceSummaries.aspx?TabVisible=False&amp;SaveAndNewVisible=False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>ToolTip</Name>
-          <Value>Btn:Add</Value>
-          <Type>ResourceReference</Type>
-        </Attribute>
-        <Attribute>
-          <Name>Visible</Name>
-          <Value>False</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>InvoiceSummariesTableControl</InsideControl>
-    </ContainedComponent>
-    <ContainedComponent>
       <Name>OrderSort</Name>
       <Type>OrderSort</Type>
       <FieldValueStyle>DropDownList</FieldValueStyle>
@@ -4743,50 +4561,6 @@
         </Attribute>
       </PassthroughAttributes>
       <InsideControl>EnergyChargesTableControl</InsideControl>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>PDFButton</Name>
-      <Type>ImageButton</Type>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>CausesValidation</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>CommandName</Name>
-          <Value>ReportData</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Consumers</Name>
-          <Value>InvoiceSummariesTableControl</Value>
-        </Attribute>
-        <Attribute>
-          <Name>ImageURL</Name>
-          <Value>../Images/ButtonBarPDFExport.gif</Value>
-        </Attribute>
-        <Attribute>
-          <Name>onmouseout</Name>
-          <Value>this.src='../Images/ButtonBarPDFExport.gif'</Value>
-        </Attribute>
-        <Attribute>
-          <Name>onmouseover</Name>
-          <Value>this.src='../Images/ButtonBarPDFExportOver.gif'</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PostBack</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>ToolTip</Name>
-          <Value>Btn:PDF</Value>
-          <Type>ResourceReference</Type>
-        </Attribute>
-        <Attribute>
-          <Name>Visible</Name>
-          <Value>False</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>InvoiceSummariesTableControl</InsideControl>
     </ContainedComponent>
     <ContainedComponent>
       <Name>PdfFileName</Name>
@@ -5626,6 +5400,10 @@
       <Type>Image</Type>
       <PassthroughAttributes>
         <Attribute>
+          <Name>Height</Name>
+          <Value>35px</Value>
+        </Attribute>
+        <Attribute>
           <Name>ImageUrl</Name>
           <Value>../Images/uploadedOk.png</Value>
         </Attribute>
@@ -5814,50 +5592,6 @@
       </PassthroughAttributes>
       <InsideControl>NetworkChargesTableControl</InsideControl>
       <InsideItemTemplate>true</InsideItemTemplate>
-    </ContainedComponent>
-    <ContainedComponent>
-      <Name>WordButton</Name>
-      <Type>ImageButton</Type>
-      <PassthroughAttributes>
-        <Attribute>
-          <Name>CausesValidation</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>CommandName</Name>
-          <Value>ExportToWord</Value>
-        </Attribute>
-        <Attribute>
-          <Name>Consumers</Name>
-          <Value>InvoiceSummariesTableControl</Value>
-        </Attribute>
-        <Attribute>
-          <Name>ImageURL</Name>
-          <Value>../Images/ButtonBarWordExport.gif</Value>
-        </Attribute>
-        <Attribute>
-          <Name>onmouseout</Name>
-          <Value>this.src='../Images/ButtonBarWordExport.gif'</Value>
-        </Attribute>
-        <Attribute>
-          <Name>onmouseover</Name>
-          <Value>this.src='../Images/ButtonBarWordExportOver.gif'</Value>
-        </Attribute>
-        <Attribute>
-          <Name>PostBack</Name>
-          <Value>False</Value>
-        </Attribute>
-        <Attribute>
-          <Name>ToolTip</Name>
-          <Value>Btn:Word</Value>
-          <Type>ResourceReference</Type>
-        </Attribute>
-        <Attribute>
-          <Name>Visible</Name>
-          <Value>False</Value>
-        </Attribute>
-      </PassthroughAttributes>
-      <InsideControl>InvoiceSummariesTableControl</InsideControl>
     </ContainedComponent>
   </ComposedOf>
   <LayoutDefinition>&lt;![CDATA[&lt;?xml version="1.0" encoding="utf-16"?&gt;
@@ -6213,9 +5947,6 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;div id="ActionsDiv" runat="server" class="popupWrapper" &amp;gt;
-                &amp;lt;GEN:PANEL NAME="ActionsPanel"/&amp;gt;
-                &amp;lt;/div&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes /&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
@@ -6235,7 +5966,6 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:Button NAME="ActionsButton" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -6289,9 +6019,6 @@
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;CellAttributes /&gt;
-      &lt;/Cell&gt;
       &lt;RowAttributes /&gt;
     &lt;/Row&gt;
     &lt;Epilog /&gt;
@@ -6311,121 +6038,6 @@
       &lt;Attribute&gt;
         &lt;Name&gt;style&lt;/Name&gt;
         &lt;AttributeValue&gt;width: 100%;&lt;/AttributeValue&gt;
-      &lt;/Attribute&gt;
-    &lt;/TableAttributes&gt;
-  &lt;/Layout&gt;
-  &lt;Layout Name="ActionsPanel" Type="BlankPanel" PanelControlName="InvoiceSummariesTableControl"&gt;
-    &lt;Prolog /&gt;
-    &lt;Row&gt;
-      &lt;Cell&gt;
-        &lt;CellAttributes /&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;CellAttributes /&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;CellAttributes /&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;CellAttributes /&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;CellAttributes /&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;CellAttributes /&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;input type="image" src="../Images/closeButton.gif" onmouseover="this.src='../Images/closeButtonOver.gif'" onmouseout="this.src='../Images/closeButton.gif'" alt="" onclick="ISD_HidePopupPanel();return false;" align="top" /&amp;gt;&amp;lt;br/&amp;gt;&lt;/Value&gt;
-        &lt;CellAttributes&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;style&lt;/Name&gt;
-            &lt;AttributeValue&gt;text-align: right;&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-          &lt;Attribute&gt;
-            &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;popupTableCellValue&lt;/AttributeValue&gt;
-          &lt;/Attribute&gt;
-        &lt;/CellAttributes&gt;
-      &lt;/Cell&gt;
-      &lt;RowAttributes /&gt;
-    &lt;/Row&gt;
-    &lt;Row&gt;
-      &lt;Cell&gt;
-        &lt;CellAttributes /&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;
-                    &amp;lt;GEN:ImageButton NAME="NewButton" /&amp;gt;
-                  &lt;/Value&gt;
-        &lt;CellAttributes /&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;
-                    &amp;lt;GEN:ImageButton NAME="PDFButton" /&amp;gt;
-                  &lt;/Value&gt;
-        &lt;CellAttributes /&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;
-                    &amp;lt;GEN:ImageButton NAME="WordButton" /&amp;gt;
-                  &lt;/Value&gt;
-        &lt;CellAttributes /&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;
-                    &amp;lt;GEN:ImageButton NAME="ExcelButton" /&amp;gt;
-                  &lt;/Value&gt;
-        &lt;CellAttributes /&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;Value&gt;
-                    &amp;lt;GEN:ImageButton NAME="ImportButton" /&amp;gt;
-                  &lt;/Value&gt;
-        &lt;CellAttributes /&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;CellAttributes /&gt;
-      &lt;/Cell&gt;
-      &lt;RowAttributes /&gt;
-    &lt;/Row&gt;
-    &lt;Row&gt;
-      &lt;Cell&gt;
-        &lt;CellAttributes /&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;CellAttributes /&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;CellAttributes /&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;CellAttributes /&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;CellAttributes /&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;CellAttributes /&gt;
-      &lt;/Cell&gt;
-      &lt;Cell&gt;
-        &lt;CellAttributes /&gt;
-      &lt;/Cell&gt;
-      &lt;RowAttributes /&gt;
-    &lt;/Row&gt;
-    &lt;Epilog /&gt;
-    &lt;TableAttributes&gt;
-      &lt;Attribute&gt;
-        &lt;Name&gt;border&lt;/Name&gt;
-        &lt;AttributeValue&gt;0&lt;/AttributeValue&gt;
-      &lt;/Attribute&gt;
-      &lt;Attribute&gt;
-        &lt;Name&gt;cellpadding&lt;/Name&gt;
-        &lt;AttributeValue&gt;0&lt;/AttributeValue&gt;
-      &lt;/Attribute&gt;
-      &lt;Attribute&gt;
-        &lt;Name&gt;cellspacing&lt;/Name&gt;
-        &lt;AttributeValue&gt;0&lt;/AttributeValue&gt;
       &lt;/Attribute&gt;
     &lt;/TableAttributes&gt;
   &lt;/Layout&gt;
@@ -6554,7 +6166,7 @@
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
-            &lt;AttributeValue&gt;popupTableCellValue&lt;/AttributeValue&gt;
+            &lt;AttributeValue&gt;popupTableCellLabel&lt;/AttributeValue&gt;
           &lt;/Attribute&gt;
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
@@ -7081,14 +6693,16 @@
     &lt;/Row&gt;
     &lt;Row Type="Repeater"&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:IMAGEBUTTON NAME="EditRowButton"&amp;gt;&amp;lt;/GEN:IMAGEBUTTON&amp;gt;   &amp;lt;GEN:IMAGEBUTTON NAME="EditRowButton1"&amp;gt;&amp;lt;/GEN:IMAGEBUTTON&amp;gt; 
-&amp;lt;GEN:IMAGEBUTTON NAME="EditRowButton2"&amp;gt;&amp;lt;/GEN:IMAGEBUTTON&amp;gt; 
+        &lt;Value&gt;&amp;lt;GEN:IMAGEBUTTON NAME="EditRowButton"&amp;gt;&amp;lt;/GEN:IMAGEBUTTON&amp;gt;  &amp;lt;span style="font-size:8pt"&amp;gt;&amp;lt;GEN:LITERAL NAME="Meridian" /&amp;gt; &amp;lt;/span&amp;gt;
+&amp;lt;GEN:IMAGEBUTTON NAME="EditRowButton1"&amp;gt;&amp;lt;/GEN:IMAGEBUTTON&amp;gt; &amp;lt;span style="font-size:8pt"&amp;gt;&amp;lt;GEN:LITERAL NAME="Contact" /&amp;gt;&amp;lt;/span&amp;gt; 
+&amp;lt;GEN:IMAGEBUTTON NAME="EditRowButton2"&amp;gt;&amp;lt;/GEN:IMAGEBUTTON&amp;gt; &amp;lt;span style="font-size:8pt"&amp;gt;&amp;lt;GEN:LITERAL NAME="Mercury" /&amp;gt;&amp;lt;/span&amp;gt;
 &amp;lt;GEN:IMAGEBUTTON NAME="DeleteRowButton"&amp;gt;&amp;lt;/GEN:IMAGEBUTTON&amp;gt;                                 
                                 
                                   &amp;lt;GEN:IMAGEBUTTON NAME="ExpandRowButton"&amp;gt;&amp;lt;/GEN:IMAGEBUTTON&amp;gt;
                                   
-                                    &amp;lt;br /&amp;gt;&amp;lt;br /&amp;gt;
-                                 &lt;/Value&gt;
+                                    &amp;lt;br /&amp;gt;&amp;lt;br /&amp;gt; 
+
+&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;
@@ -7113,9 +6727,6 @@
         &lt;/CellAttributes&gt;
       &lt;/Cell&gt;
       &lt;Cell&gt;
-        &lt;Value&gt;&amp;lt;GEN:LITERAL NAME="Literal" /&amp;gt;&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;
-&amp;lt;GEN:LITERAL NAME="Literal1" /&amp;gt;&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;
-&amp;lt;GEN:LITERAL NAME="Literal2" /&amp;gt;&lt;/Value&gt;
         &lt;CellAttributes&gt;
           &lt;Attribute&gt;
             &lt;Name&gt;class&lt;/Name&gt;

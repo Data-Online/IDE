@@ -26,6 +26,7 @@ using IDE.Business;
 using IDE.Data;
 using IDE.UI;
 using IDE;
+using Helpers;
 
 
 #endregion
@@ -149,8 +150,8 @@ namespace IDE.UI.Controls.Edit_InvoiceSummaries_Meridian
 
             //Code for the text property is generated inside the .aspx file. 
             //To override this property you can uncomment the following property and add you own value.
-            this.ContainerId.Text = this.DataSource.SiteId.ToString().PadLeft(6, '0');
-            this.PdfFileName.Text = this.DataSource.InvoiceSummaryId.ToString().PadLeft(8, '0') + ".pdf";
+            this.ContainerId.Text = this.DataSource.SiteId.FormatContainerName();
+            this.PdfFileName.Text = this.DataSource.InvoiceSummaryId.FormatPdfFileName();
         }
 
         public override void SetAlert()
@@ -158,7 +159,8 @@ namespace IDE.UI.Controls.Edit_InvoiceSummaries_Meridian
             this.Alert.Visible = false;
             string alertMessage = "";
 
-            bool invOnFile = (this.Page as BaseApplicationPage).UploadToBlob(this.DataSource.InvoiceId, this.DataSource.SiteId);
+            //bool invOnFile = (this.Page as BaseApplicationPage).UploadToBlob(this.DataSource.InvoiceId, this.DataSource.SiteId);
+            bool invOnFile = (this.Page as BaseApplicationPage).UploadToBlob(this.PdfFileName.Text, this.ContainerId.Text);
 
             alertMessage = (this.Page as BaseApplicationPage).CallCustomStoredProcedure("sp_ValidateInvoice", this.DataSource.InvoiceSummaryId, invOnFile);
             if (alertMessage.Length > 0)

@@ -4,3 +4,6 @@ P:\Projects\Cloud_Development\CIMSCO\InvoiceDataEntry\IDE\Business Layer\obj\Rel
 Z:\Software Versions\_IDE\IDE\Business Layer\bin\IDE.Business.dll
 Z:\Software Versions\_IDE\IDE\Business Layer\obj\Release\IDE.Business.csprojResolveAssemblyReference.cache
 Z:\Software Versions\_IDE\IDE\Business Layer\obj\Release\IDE.Business.dll
+P:\Projects\Cloud_Development\GitHub\IDE\Business Layer\bin\IDE.Business.dll
+P:\Projects\Cloud_Development\GitHub\IDE\Business Layer\obj\Release\IDE.Business.csprojResolveAssemblyReference.cache
+P:\Projects\Cloud_Development\GitHub\IDE\Business Layer\obj\Release\IDE.Business.dll

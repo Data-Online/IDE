@@ -154,6 +154,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\StringExtensions.cs" />
     <Compile Include="My Project\AssemblyInfo.cs" />
     <Compile Include="Shared\AccessParser.cs" />
     <Compile Include="Shared\BaseApplicationMenuControl.cs">

@@ -228,28 +228,20 @@ public partial class Group_By_InvoiceSummaries_Table
         }
         
     
-        public ThemeButtonWithArrow ActionsButton;
-                
         public System.Web.UI.WebControls.Label CheckedText;
         
         public System.Web.UI.WebControls.Literal CustomerId;
             
         public System.Web.UI.WebControls.Literal CustomerIdLabel;
         
-        public System.Web.UI.WebControls.ImageButton ExcelButton;
-        
         public ThemeButton FilterButton;
                 
         public ThemeButtonWithArrow FiltersButton;
                 
-        public System.Web.UI.WebControls.ImageButton ImportButton;
-        
         public System.Web.UI.WebControls.Literal InvoiceDateLabel1;
         
         public IDE.UI.Controls.Group_By_InvoiceSummaries_Table.InvoiceSummariesTableControl InvoiceSummariesTableControl;
           
-        public System.Web.UI.WebControls.ImageButton NewButton;
-        
         public System.Web.UI.WebControls.Literal PageTitle;
         
         public PaginationModern Pagination;
@@ -258,8 +250,6 @@ public partial class Group_By_InvoiceSummaries_Table
                 
         public PaginationModern Pagination2;
                 
-        public System.Web.UI.WebControls.ImageButton PDFButton;
-        
         public System.Web.UI.WebControls.ImageButton ResetButton;
         
         public System.Web.UI.WebControls.ImageButton SearchButton;
@@ -274,8 +264,6 @@ public partial class Group_By_InvoiceSummaries_Table
         
         public System.Web.UI.WebControls.Literal Title0;
             
-        public System.Web.UI.WebControls.ImageButton WordButton;
-        
         public ValidationSummary ValidationSummary1;
 
   

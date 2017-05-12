@@ -28,6 +28,7 @@ using IDE.Business;
 using IDE.Data;
 using IDE.UI;
 using IDE;
+using Helpers;
 
 
 #endregion
@@ -161,7 +162,7 @@ namespace IDE.UI.Controls.Group_By_InvoiceSummaries_Table
         {
             //Code for the text property is generated inside the .aspx file. 
             //To override this property you can uncomment the following property and add you own value.
-            this.ContainerId.Text = this.DataSource.SiteId.ToString().PadLeft(6, '0');
+            this.ContainerId.Text = this.DataSource.SiteId.FormatContainerName();
             //this.PdfFileName.Text = this.DataSource.InvoiceId.ToString().PadLeft(8, '0') + ".pdf";
 
             if (this.DataSource.InvoiceId == 99999999)
@@ -171,7 +172,7 @@ namespace IDE.UI.Controls.Group_By_InvoiceSummaries_Table
             }
             else
             {
-                this.PdfFileName.Text = this.DataSource.InvoiceId.ToString().PadLeft(8, '0') + ".pdf";
+                this.PdfFileName.Text = this.DataSource.InvoiceId.FormatPdfFileName();
                 this.UploadedOkImage.Visible = this.DataSource.OnFile;
             }
         }
@@ -196,7 +197,8 @@ namespace IDE.UI.Controls.Group_By_InvoiceSummaries_Table
             this.Alert.Visible = false;
             string alertMessage = "";
 
-            bool invOnFile = (this.Page as BaseApplicationPage).UploadToBlob(this.DataSource.InvoiceId, this.DataSource.SiteId);
+            bool invOnFile = (this.Page as BaseApplicationPage).UploadToBlob(this.DataSource.InvoiceId.FormatPdfFileName(), this.DataSource.SiteId.FormatContainerName());
+            //bool invOnFile = (this.Page as BaseApplicationPage).UploadToBlob(this.PdfFileName.Text, this.ContainerId.Text);
             alertMessage = (this.Page as BaseApplicationPage).CallCustomStoredProcedure("sp_ValidateInvoice", this.DataSource.InvoiceSummaryId, invOnFile);
             if (alertMessage.Length > 0)
             {
@@ -4129,6 +4131,7 @@ public class BaseInvoiceSummariesTableControlRow : IDE.UI.BaseApplicationRecordC
                 SetAlert();
                 SetConnectionNumber();
                 SetConnectionNumberLabel();
+                SetContact();
                 SetContainerId();
                 SetCustomerNumber();
                 SetCustomerNumberLabel();
@@ -4157,9 +4160,8 @@ public class BaseInvoiceSummariesTableControlRow : IDE.UI.BaseApplicationRecordC
                 SetInvoiceTotalLabel();
                 SetKWhTotal();
                 SetKWhTotalLabel();
-                SetLiteral();
-                SetLiteral1();
-                SetLiteral2();
+                SetMercury();
+                SetMeridian();
                 SetMiscChargesTotal();
                 SetMiscChargesTotalLabel();
                 
@@ -4974,6 +4976,16 @@ public class BaseInvoiceSummariesTableControlRow : IDE.UI.BaseApplicationRecordC
                     
         }
                 
+        public virtual void SetContact()
+                  {
+                  
+                      //Code for the text property is generated inside the .aspx file. 
+                      //To override this property you can uncomment the following property and add you own value.
+                      //this.Contact.Text = "Some value";
+                    
+                    
+        }
+                
         public virtual void SetContainerId()
                   {
                   
@@ -5040,32 +5052,22 @@ public class BaseInvoiceSummariesTableControlRow : IDE.UI.BaseApplicationRecordC
                     
         }
                 
-        public virtual void SetLiteral()
+        public virtual void SetMercury()
                   {
                   
                       //Code for the text property is generated inside the .aspx file. 
                       //To override this property you can uncomment the following property and add you own value.
-                      //this.Literal.Text = "Some value";
+                      //this.Mercury.Text = "Some value";
                     
                     
         }
                 
-        public virtual void SetLiteral1()
+        public virtual void SetMeridian()
                   {
                   
                       //Code for the text property is generated inside the .aspx file. 
                       //To override this property you can uncomment the following property and add you own value.
-                      //this.Literal1.Text = "Some value";
-                    
-                    
-        }
-                
-        public virtual void SetLiteral2()
-                  {
-                  
-                      //Code for the text property is generated inside the .aspx file. 
-                      //To override this property you can uncomment the following property and add you own value.
-                      //this.Literal2.Text = "Some value";
+                      //this.Meridian.Text = "Some value";
                     
                     
         }
@@ -6029,6 +6031,12 @@ public class BaseInvoiceSummariesTableControlRow : IDE.UI.BaseApplicationRecordC
             }
         }
         
+        public System.Web.UI.WebControls.Literal Contact {
+            get {
+                return (System.Web.UI.WebControls.Literal)BaseClasses.Utils.MiscUtils.FindControlRecursively(this, "Contact");
+            }
+        }
+        
         public System.Web.UI.WebControls.Literal ContainerId {
             get {
                 return (System.Web.UI.WebControls.Literal)BaseClasses.Utils.MiscUtils.FindControlRecursively(this, "ContainerId");
@@ -6197,21 +6205,15 @@ public class BaseInvoiceSummariesTableControlRow : IDE.UI.BaseApplicationRecordC
             }
         }
         
-        public System.Web.UI.WebControls.Literal Literal {
+        public System.Web.UI.WebControls.Literal Mercury {
             get {
-                return (System.Web.UI.WebControls.Literal)BaseClasses.Utils.MiscUtils.FindControlRecursively(this, "Literal");
+                return (System.Web.UI.WebControls.Literal)BaseClasses.Utils.MiscUtils.FindControlRecursively(this, "Mercury");
             }
         }
         
-        public System.Web.UI.WebControls.Literal Literal1 {
+        public System.Web.UI.WebControls.Literal Meridian {
             get {
-                return (System.Web.UI.WebControls.Literal)BaseClasses.Utils.MiscUtils.FindControlRecursively(this, "Literal1");
-            }
-        }
-        
-        public System.Web.UI.WebControls.Literal Literal2 {
-            get {
-                return (System.Web.UI.WebControls.Literal)BaseClasses.Utils.MiscUtils.FindControlRecursively(this, "Literal2");
+                return (System.Web.UI.WebControls.Literal)BaseClasses.Utils.MiscUtils.FindControlRecursively(this, "Meridian");
             }
         }
         
@@ -6667,21 +6669,9 @@ public class BaseInvoiceSummariesTableControl : IDE.UI.BaseApplicationTableContr
         
             // Setup the button events.
           
-                    this.ExcelButton.Click += ExcelButton_Click;
-                        
-                    this.ImportButton.Click += ImportButton_Click;
-                        
-                    this.NewButton.Click += NewButton_Click;
-                        
-                    this.PDFButton.Click += PDFButton_Click;
-                        
                     this.ResetButton.Click += ResetButton_Click;
                         
                     this.SearchButton.Click += SearchButton_Click;
-                        
-                    this.WordButton.Click += WordButton_Click;
-                        
-                    this.ActionsButton.Button.Click += ActionsButton_Click;
                         
                     this.FilterButton.Button.Click += FilterButton_Click;
                         
@@ -6931,19 +6921,14 @@ public class BaseInvoiceSummariesTableControl : IDE.UI.BaseApplicationTableContr
     
             // Call the Set methods for each controls on the panel
         
-                
                 SetCheckedText();
-                
-                
                 
                 
                 
                 SetInvoiceDateLabel1();
                 
                 
-                
                 SetOrderSort();
-                
                 
                 
                 
@@ -6956,23 +6941,10 @@ public class BaseInvoiceSummariesTableControl : IDE.UI.BaseApplicationTableContr
                 
                 
                 
-                
                 SetCheckedOkFilter();
-                SetExcelButton();
-              
-                SetImportButton();
-              
-                SetNewButton();
-              
-                SetPDFButton();
-              
                 SetResetButton();
               
                 SetSearchButton();
-              
-                SetWordButton();
-              
-                SetActionsButton();
               
                 SetFilterButton();
               
@@ -7027,15 +6999,6 @@ public class BaseInvoiceSummariesTableControl : IDE.UI.BaseApplicationTableContr
     }
 
         
-    public virtual void AddWarningMessageOnClick() {
-    
-        if (this.TotalRecords > 10000)
-          this.ExcelButton.Attributes.Add("onClick", "return (confirm('" + ((BaseApplicationPage)this.Page).GetResourceValue("ExportConfirm", "IDE") + "'));");
-        else
-          this.ExcelButton.Attributes.Remove("onClick");
-      
-    }
-  
         public void PreFetchForeignKeyValues() {
             if (this.DataSource == null) {
                 return;
@@ -7049,13 +7012,7 @@ public class BaseInvoiceSummariesTableControl : IDE.UI.BaseApplicationTableContr
 
         public virtual void RegisterPostback()
         {
-        
-              this.Page.RegisterPostBackTrigger(MiscUtils.FindControlRecursively(this,"ExcelButton"));
-                        
-              this.Page.RegisterPostBackTrigger(MiscUtils.FindControlRecursively(this,"PDFButton"));
-                        
-              this.Page.RegisterPostBackTrigger(MiscUtils.FindControlRecursively(this,"WordButton"));
-                                
+                
         }
         
 
@@ -8725,59 +8682,6 @@ public class BaseInvoiceSummariesTableControl : IDE.UI.BaseApplicationTableContr
 
         // Generate set method for buttons
         
-        public virtual void SetExcelButton()                
-              
-        {
-        
-   
-        }
-            
-        public virtual void SetImportButton()                
-              
-        {
-        							
-                    this.ImportButton.PostBackUrl = "../Shared/SelectFileToImport.aspx?TableName=InvoiceSummaries" ;
-                    this.ImportButton.Attributes["onClick"] = "window.open('" + this.Page.EncryptUrlParameter(this.ImportButton.PostBackUrl) + "','importWindow', 'width=700, height=500,top=' +(screen.availHeight-500)/2 + ',left=' + (screen.availWidth-700)/2+ ', resizable=yes, scrollbars=yes,modal=yes'); return false;";
-                        
-   
-        }
-            
-        public virtual void SetNewButton()                
-              
-        {
-        
-              try
-              {
-                    string url = "../InvoiceSummaries/Add-InvoiceSummaries.aspx?TabVisible=False&SaveAndNewVisible=False";
-              
-                      
-                    url = this.ModifyRedirectUrl(url, "", true);
-                    
-                    url = this.Page.ModifyRedirectUrl(url, "", true);                                  
-                    
-                    url = url + "&RedirectStyle=" + (this.Page as BaseApplicationPage).Encrypt("Popup") + "&Target=" + (this.Page as BaseApplicationPage).Encrypt(MiscUtils.FindControlRecursively(this, "InvoiceSummariesTableControl_PostbackTracker").ClientID);                           
-                                
-                string javascriptCall = "";
-                
-                    javascriptCall = "initializePopupPage2(document.getElementById('" + MiscUtils.FindControlRecursively(this, "InvoiceSummariesTableControl_PostbackTracker").ClientID + "'), '" + url + "', true, event);";                                      
-                       
-                    this.NewButton.Attributes["onClick"] = javascriptCall + "return false;";            
-                }
-                catch
-                {
-                    // do nothing.  If the code above fails, server side click event, NewButton_ClickNewButton_Click will be trigger when user click the button.
-                }
-                  
-   
-        }
-            
-        public virtual void SetPDFButton()                
-              
-        {
-        
-   
-        }
-            
         public virtual void SetResetButton()                
               
         {
@@ -8786,20 +8690,6 @@ public class BaseInvoiceSummariesTableControl : IDE.UI.BaseApplicationTableContr
         }
             
         public virtual void SetSearchButton()                
-              
-        {
-        
-   
-        }
-            
-        public virtual void SetWordButton()                
-              
-        {
-        
-   
-        }
-            
-        public virtual void SetActionsButton()                
               
         {
         
@@ -8963,434 +8853,6 @@ public class BaseInvoiceSummariesTableControl : IDE.UI.BaseApplicationTableContr
         // Generate the event handling functions for button events.
         
         // event handler for ImageButton
-        public virtual void ExcelButton_Click(object sender, ImageClickEventArgs args)
-        {
-              
-            try {
-                // Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction();
-                
-            
-            // To customize the columns or the format, override this function in Section 1 of the page
-            // and modify it to your liking.
-            // Build the where clause based on the current filter and search criteria
-            // Create the Order By clause based on the user's current sorting preference.
-            
-                WhereClause wc = null;
-                wc = CreateWhereClause();
-                OrderBy orderBy = null;
-              
-                orderBy = CreateOrderBy();
-              
-              bool done = false;
-              object val = "";
-              CompoundFilter join = CreateCompoundJoinFilter();
-              
-              // Read pageSize records at a time and write out the Excel file.
-              int totalRowsReturned = 0;
-
-
-              this.TotalRecords = InvoiceSummariesTable.GetRecordCount(join, wc);
-              if (this.TotalRecords > 10000)
-              {
-              
-                // Add each of the columns in order of export.
-                BaseColumn[] columns = new BaseColumn[] {
-                             InvoiceSummariesTable.InvoiceId,
-             InvoiceSummariesTable.InvoiceDate,
-             InvoiceSummariesTable.InvoiceNumber,
-             InvoiceSummariesTable.GstTotal,
-             InvoiceSummariesTable.InvoiceTotal,
-             InvoiceSummariesTable.AccountNumber,
-             InvoiceSummariesTable.CustomerNumber,
-             InvoiceSummariesTable.SiteId,
-             InvoiceSummariesTable.NetworkChargesTotal,
-             InvoiceSummariesTable.EnergyChargesTotal,
-             InvoiceSummariesTable.MiscChargesTotal,
-             InvoiceSummariesTable.ConnectionNumber,
-             InvoiceSummariesTable.InvoiceDueDate,
-             InvoiceSummariesTable.PeriodStart,
-             InvoiceSummariesTable.PeriodEnd,
-             InvoiceSummariesTable.EnergyPointId,
-             InvoiceSummariesTable.SupplierId,
-             null};
-                ExportDataToCSV exportData = new ExportDataToCSV(InvoiceSummariesTable.Instance,wc,orderBy,columns);
-                exportData.StartExport(this.Page.Response, true);
-
-                DataForExport dataForCSV = new DataForExport(InvoiceSummariesTable.Instance, wc, orderBy, columns,join);
-
-                //  Read pageSize records at a time and write out the CSV file.
-                while (!done)
-                {
-                ArrayList recList = dataForCSV.GetRows(exportData.pageSize);
-                if (recList == null)
-                break; //we are done
-
-                totalRowsReturned = recList.Count;
-                foreach (BaseRecord rec in recList)
-                {
-                foreach (BaseColumn col in dataForCSV.ColumnList)
-                {
-                if (col == null)
-                continue;
-
-                if (!dataForCSV.IncludeInExport(col))
-                continue;
-
-                val = rec.GetValue(col).ToString();
-                exportData.WriteColumnData(val, dataForCSV.IsString(col));
-                }
-                exportData.WriteNewRow();
-                }
-
-                //  If we already are below the pageSize, then we are done.
-                if (totalRowsReturned < exportData.pageSize)
-                {
-                done = true;
-                }
-                }
-                exportData.FinishExport(this.Page.Response);
-              
-              }
-              else
-              {
-              // Create an instance of the ExportDataToExcel class with the table class, where clause and order by.
-              ExportDataToExcel excelReport = new ExportDataToExcel(InvoiceSummariesTable.Instance, wc, orderBy);
-              // Add each of the columns in order of export.
-              // To customize the data type, change the second parameter of the new ExcelColumn to be
-              // a format string from Excel's Format Cell menu. For example "dddd, mmmm dd, yyyy h:mm AM/PM;@", "#,##0.00"
-
-              if (this.Page.Response == null)
-              return;
-
-              excelReport.CreateExcelBook();
-
-              int width = 0;
-              int columnCounter = 0;
-              DataForExport data = new DataForExport(InvoiceSummariesTable.Instance, wc, orderBy, null,join);
-                           data.ColumnList.Add(new ExcelColumn(InvoiceSummariesTable.InvoiceId, "0"));
-             data.ColumnList.Add(new ExcelColumn(InvoiceSummariesTable.InvoiceDate, "Short Date"));
-             data.ColumnList.Add(new ExcelColumn(InvoiceSummariesTable.InvoiceNumber, "Default"));
-             data.ColumnList.Add(new ExcelColumn(InvoiceSummariesTable.GstTotal, "Standard"));
-             data.ColumnList.Add(new ExcelColumn(InvoiceSummariesTable.InvoiceTotal, "Standard"));
-             data.ColumnList.Add(new ExcelColumn(InvoiceSummariesTable.AccountNumber, "Default"));
-             data.ColumnList.Add(new ExcelColumn(InvoiceSummariesTable.CustomerNumber, "Default"));
-             data.ColumnList.Add(new ExcelColumn(InvoiceSummariesTable.SiteId, "Default"));
-             data.ColumnList.Add(new ExcelColumn(InvoiceSummariesTable.NetworkChargesTotal, "Standard"));
-             data.ColumnList.Add(new ExcelColumn(InvoiceSummariesTable.EnergyChargesTotal, "Standard"));
-             data.ColumnList.Add(new ExcelColumn(InvoiceSummariesTable.MiscChargesTotal, "Standard"));
-             data.ColumnList.Add(new ExcelColumn(InvoiceSummariesTable.ConnectionNumber, "Default"));
-             data.ColumnList.Add(new ExcelColumn(InvoiceSummariesTable.InvoiceDueDate, "Short Date"));
-             data.ColumnList.Add(new ExcelColumn(InvoiceSummariesTable.PeriodStart, "Short Date"));
-             data.ColumnList.Add(new ExcelColumn(InvoiceSummariesTable.PeriodEnd, "Short Date"));
-             data.ColumnList.Add(new ExcelColumn(InvoiceSummariesTable.EnergyPointId, "Default"));
-             data.ColumnList.Add(new ExcelColumn(InvoiceSummariesTable.SupplierId, "Default"));
-
-
-              //  First write out the Column Headers
-              foreach (ExcelColumn col in data.ColumnList)
-              {
-              width = excelReport.GetExcelCellWidth(col);
-              if (data.IncludeInExport(col))
-              {
-              excelReport.AddColumnToExcelBook(columnCounter, col.ToString(), excelReport.GetExcelDataType(col), width, excelReport.GetDisplayFormat(col));
-              columnCounter++;
-              }
-              }
-              
-              while (!done)
-              {
-              ArrayList recList = data.GetRows(excelReport.pageSize);
-
-              if (recList == null)
-              {
-              break;
-              }
-              totalRowsReturned = recList.Count;
-
-              foreach (BaseRecord rec in recList)
-              {
-              excelReport.AddRowToExcelBook();
-              columnCounter = 0;
-              foreach (ExcelColumn col in data.ColumnList)
-              {
-              if (!data.IncludeInExport(col))
-              continue;
-
-              Boolean _isExpandableNonCompositeForeignKey = col.DisplayColumn.TableDefinition.IsExpandableNonCompositeForeignKey(col.DisplayColumn);
-              if (_isExpandableNonCompositeForeignKey && col.DisplayColumn.IsApplyDisplayAs)
-              {
-                val = InvoiceSummariesTable.GetDFKA(rec.GetValue(col.DisplayColumn).ToString(), col.DisplayColumn, null) as string;
-                if (String.IsNullOrEmpty(val as string))
-                {
-                  val = rec.Format(col.DisplayColumn);
-                }
-              }
-              else
-                val = excelReport.GetValueForExcelExport(col, rec);
-              
-              excelReport.AddCellToExcelRow(columnCounter, excelReport.GetExcelDataType(col), val, col.DisplayFormat);
-
-              columnCounter++;
-              }
-              }
-
-              // If we already are below the pageSize, then we are done.
-              if (totalRowsReturned < excelReport.pageSize)
-              {
-              done = true;
-              }
-              }
-              excelReport.SaveExcelBook(this.Page.Response);
-              }
-            
-            } catch (Exception ex) {
-                  // Upon error, rollback the transaction
-                  this.Page.RollBackTransaction(sender);
-                  this.Page.ErrorOnPage = true;
-
-            // Report the error message to the end user
-            BaseClasses.Utils.MiscUtils.RegisterJScriptAlert(this, "BUTTON_CLICK_MESSAGE", ex.Message);
-    
-            } finally {
-                DbUtils.EndTransaction();
-            }
-    
-        }
-            
-            
-        
-        // event handler for ImageButton
-        public virtual void ImportButton_Click(object sender, ImageClickEventArgs args)
-        {
-              
-            try {
-                // Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction();
-                
-            } catch (Exception ex) {
-                  // Upon error, rollback the transaction
-                  this.Page.RollBackTransaction(sender);
-                  this.Page.ErrorOnPage = true;
-
-            // Report the error message to the end user
-            BaseClasses.Utils.MiscUtils.RegisterJScriptAlert(this, "BUTTON_CLICK_MESSAGE", ex.Message);
-    
-            } finally {
-                DbUtils.EndTransaction();
-            }
-    
-        }
-            
-            
-        
-        // event handler for ImageButton
-        public virtual void NewButton_Click(object sender, ImageClickEventArgs args)
-        {
-              
-            // The redirect URL is set on the Properties, Custom Properties or Actions.
-            // The ModifyRedirectURL call resolves the parameters before the
-            // Response.Redirect redirects the page to the URL.  
-            // Any code after the Response.Redirect call will not be executed, since the page is
-            // redirected to the URL.
-            
-            string url = @"../InvoiceSummaries/Add-InvoiceSummaries.aspx?TabVisible=False&SaveAndNewVisible=False";
-            
-        bool shouldRedirect = true;
-        string target = null;
-        if (target == null) target = ""; // avoid warning on VS
-      
-            try {
-                // Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction();
-                
-                url = this.ModifyRedirectUrl(url, "",true);
-                url = this.Page.ModifyRedirectUrl(url, "",true);
-              
-            } catch (Exception ex) {
-                  // Upon error, rollback the transaction
-                  this.Page.RollBackTransaction(sender);
-                  shouldRedirect = false;
-                  this.Page.ErrorOnPage = true;
-
-            // Report the error message to the end user
-            BaseClasses.Utils.MiscUtils.RegisterJScriptAlert(this, "BUTTON_CLICK_MESSAGE", ex.Message);
-    
-            } finally {
-                DbUtils.EndTransaction();
-            }
-            if (shouldRedirect) {
-                this.Page.ShouldSaveControlsToSession = true;
-      
-                    url = url + "&RedirectStyle=" + (this.Page as BaseApplicationPage).Encrypt("Popup") + "&Target=" + (this.Page as BaseApplicationPage).Encrypt(MiscUtils.FindControlRecursively(this, "InvoiceSummariesTableControl_PostbackTracker").ClientID);                           
-                                
-                string javascriptCall = "";
-                
-                    javascriptCall = "initializePopupPage2(document.getElementById('" + MiscUtils.FindControlRecursively(this, "InvoiceSummariesTableControl_PostbackTracker").ClientID + "'), '" + url + "', true, event);";                                      
-                AjaxControlToolkit.ToolkitScriptManager.RegisterStartupScript(this, this.GetType(), "NewButton_Click", javascriptCall, true);
-        
-            }
-        
-        }
-            
-            
-        
-        // event handler for ImageButton
-        public virtual void PDFButton_Click(object sender, ImageClickEventArgs args)
-        {
-              
-            try {
-                // Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction();
-                
-
-                PDFReport report = new PDFReport();
-
-                report.SpecificReportFileName = Page.Server.MapPath("Group-By-InvoiceSummaries-Table.PDFButton.report");
-                // report.Title replaces the value tag of page header and footer containing ${ReportTitle}
-                report.Title = "InvoiceSummaries";
-                // If Group-By-InvoiceSummaries-Table.PDFButton.report specifies a valid report template,
-                // AddColumn methods will generate a report template.   
-                // Each AddColumn method-call specifies a column
-                // The 1st parameter represents the text of the column header
-                // The 2nd parameter represents the horizontal alignment of the column header
-                // The 3rd parameter represents the text format of the column detail
-                // The 4th parameter represents the horizontal alignment of the column detail
-                // The 5th parameter represents the relative width of the column
-                 report.AddColumn(InvoiceSummariesTable.InvoiceId.Name, ReportEnum.Align.Right, "${InvoiceId}", ReportEnum.Align.Right, 15);
-                 report.AddColumn(InvoiceSummariesTable.InvoiceDate.Name, ReportEnum.Align.Left, "${InvoiceDate}", ReportEnum.Align.Left, 20);
-                 report.AddColumn(InvoiceSummariesTable.InvoiceNumber.Name, ReportEnum.Align.Left, "${InvoiceNumber}", ReportEnum.Align.Left, 20);
-                 report.AddColumn(InvoiceSummariesTable.GstTotal.Name, ReportEnum.Align.Right, "${GstTotal}", ReportEnum.Align.Right, 19);
-                 report.AddColumn(InvoiceSummariesTable.InvoiceTotal.Name, ReportEnum.Align.Right, "${InvoiceTotal}", ReportEnum.Align.Right, 19);
-                 report.AddColumn(InvoiceSummariesTable.AccountNumber.Name, ReportEnum.Align.Left, "${AccountNumber}", ReportEnum.Align.Left, 15);
-                 report.AddColumn(InvoiceSummariesTable.CustomerNumber.Name, ReportEnum.Align.Left, "${CustomerNumber}", ReportEnum.Align.Left, 15);
-                 report.AddColumn(InvoiceSummariesTable.SiteId.Name, ReportEnum.Align.Left, "${SiteId}", ReportEnum.Align.Left, 28);
-                 report.AddColumn(InvoiceSummariesTable.NetworkChargesTotal.Name, ReportEnum.Align.Right, "${NetworkChargesTotal}", ReportEnum.Align.Right, 19);
-                 report.AddColumn(InvoiceSummariesTable.EnergyChargesTotal.Name, ReportEnum.Align.Right, "${EnergyChargesTotal}", ReportEnum.Align.Right, 19);
-                 report.AddColumn(InvoiceSummariesTable.MiscChargesTotal.Name, ReportEnum.Align.Right, "${MiscChargesTotal}", ReportEnum.Align.Right, 19);
-                 report.AddColumn(InvoiceSummariesTable.ConnectionNumber.Name, ReportEnum.Align.Left, "${ConnectionNumber}", ReportEnum.Align.Left, 24);
-                 report.AddColumn(InvoiceSummariesTable.InvoiceDueDate.Name, ReportEnum.Align.Left, "${InvoiceDueDate}", ReportEnum.Align.Left, 20);
-                 report.AddColumn(InvoiceSummariesTable.PeriodStart.Name, ReportEnum.Align.Left, "${PeriodStart}", ReportEnum.Align.Left, 20);
-                 report.AddColumn(InvoiceSummariesTable.PeriodEnd.Name, ReportEnum.Align.Left, "${PeriodEnd}", ReportEnum.Align.Left, 20);
-                 report.AddColumn(InvoiceSummariesTable.EnergyPointId.Name, ReportEnum.Align.Left, "${EnergyPointId}", ReportEnum.Align.Left, 24);
-                 report.AddColumn(InvoiceSummariesTable.SupplierId.Name, ReportEnum.Align.Left, "${SupplierId}", ReportEnum.Align.Left, 28);
-
-  
-                int rowsPerQuery = 5000;
-                int recordCount = 0;
-                                
-                report.Page = Page.GetResourceValue("Txt:Page", "IDE");
-                report.ApplicationPath = this.Page.MapPath(Page.Request.ApplicationPath);
-
-                
-                ColumnList columns = InvoiceSummariesTable.GetColumnList();
-                
-                WhereClause whereClause = null;
-                whereClause = CreateWhereClause();
-                OrderBy orderBy = CreateOrderBy();
-                BaseFilter joinFilter = CreateCompoundJoinFilter();
-                
-                int pageNum = 0;
-                int totalRows = InvoiceSummariesTable.GetRecordCount(joinFilter,whereClause);
-                InvoiceSummariesRecord[] records = null;
-                
-                do
-                {
-                    
-                    records = InvoiceSummariesTable.GetRecords(joinFilter,whereClause, orderBy, pageNum, rowsPerQuery);
-                     if (records != null && records.Length > 0 && whereClause.RunQuery)
-                    {
-                        foreach ( InvoiceSummariesRecord record in records)
-                    
-                        {
-                            // AddData method takes four parameters   
-                            // The 1st parameter represent the data format
-                            // The 2nd parameter represent the data value
-                            // The 3rd parameter represent the default alignment of column using the data
-                            // The 4th parameter represent the maximum length of the data value being shown
-                                                 report.AddData("${InvoiceId}", record.Format(InvoiceSummariesTable.InvoiceId), ReportEnum.Align.Right, 300);
-                             report.AddData("${InvoiceDate}", record.Format(InvoiceSummariesTable.InvoiceDate), ReportEnum.Align.Left, 300);
-                             report.AddData("${InvoiceNumber}", record.Format(InvoiceSummariesTable.InvoiceNumber), ReportEnum.Align.Left, 300);
-                             report.AddData("${GstTotal}", record.Format(InvoiceSummariesTable.GstTotal), ReportEnum.Align.Right, 300);
-                             report.AddData("${InvoiceTotal}", record.Format(InvoiceSummariesTable.InvoiceTotal), ReportEnum.Align.Right, 300);
-                             report.AddData("${AccountNumber}", record.Format(InvoiceSummariesTable.AccountNumber), ReportEnum.Align.Left, 300);
-                             report.AddData("${CustomerNumber}", record.Format(InvoiceSummariesTable.CustomerNumber), ReportEnum.Align.Left, 300);
-                             if (BaseClasses.Utils.MiscUtils.IsNull(record.SiteId)){
-                                 report.AddData("${SiteId}", "",ReportEnum.Align.Left, 300);
-                             }else{
-                                 Boolean _isExpandableNonCompositeForeignKey;
-                                 String _DFKA = "";
-                                 _isExpandableNonCompositeForeignKey = InvoiceSummariesTable.Instance.TableDefinition.IsExpandableNonCompositeForeignKey(InvoiceSummariesTable.SiteId);
-                                 _DFKA = InvoiceSummariesTable.GetDFKA(record.SiteId.ToString(), InvoiceSummariesTable.SiteId,null);
-                                 if (_isExpandableNonCompositeForeignKey &&  ( _DFKA  != null)  &&  InvoiceSummariesTable.SiteId.IsApplyDisplayAs){
-                                     report.AddData("${SiteId}", _DFKA,ReportEnum.Align.Left, 300);
-                                 }else{
-                                     report.AddData("${SiteId}", record.Format(InvoiceSummariesTable.SiteId), ReportEnum.Align.Left, 300);
-                                 }
-                             }
-                             report.AddData("${NetworkChargesTotal}", record.Format(InvoiceSummariesTable.NetworkChargesTotal), ReportEnum.Align.Right, 300);
-                             report.AddData("${EnergyChargesTotal}", record.Format(InvoiceSummariesTable.EnergyChargesTotal), ReportEnum.Align.Right, 300);
-                             report.AddData("${MiscChargesTotal}", record.Format(InvoiceSummariesTable.MiscChargesTotal), ReportEnum.Align.Right, 300);
-                             report.AddData("${ConnectionNumber}", record.Format(InvoiceSummariesTable.ConnectionNumber), ReportEnum.Align.Left, 300);
-                             report.AddData("${InvoiceDueDate}", record.Format(InvoiceSummariesTable.InvoiceDueDate), ReportEnum.Align.Left, 300);
-                             report.AddData("${PeriodStart}", record.Format(InvoiceSummariesTable.PeriodStart), ReportEnum.Align.Left, 300);
-                             report.AddData("${PeriodEnd}", record.Format(InvoiceSummariesTable.PeriodEnd), ReportEnum.Align.Left, 300);
-                             if (BaseClasses.Utils.MiscUtils.IsNull(record.EnergyPointId)){
-                                 report.AddData("${EnergyPointId}", "",ReportEnum.Align.Left, 300);
-                             }else{
-                                 Boolean _isExpandableNonCompositeForeignKey;
-                                 String _DFKA = "";
-                                 _isExpandableNonCompositeForeignKey = InvoiceSummariesTable.Instance.TableDefinition.IsExpandableNonCompositeForeignKey(InvoiceSummariesTable.EnergyPointId);
-                                 _DFKA = InvoiceSummariesTable.GetDFKA(record.EnergyPointId.ToString(), InvoiceSummariesTable.EnergyPointId,null);
-                                 if (_isExpandableNonCompositeForeignKey &&  ( _DFKA  != null)  &&  InvoiceSummariesTable.EnergyPointId.IsApplyDisplayAs){
-                                     report.AddData("${EnergyPointId}", _DFKA,ReportEnum.Align.Left, 300);
-                                 }else{
-                                     report.AddData("${EnergyPointId}", record.Format(InvoiceSummariesTable.EnergyPointId), ReportEnum.Align.Left, 300);
-                                 }
-                             }
-                             if (BaseClasses.Utils.MiscUtils.IsNull(record.SupplierId)){
-                                 report.AddData("${SupplierId}", "",ReportEnum.Align.Left, 300);
-                             }else{
-                                 Boolean _isExpandableNonCompositeForeignKey;
-                                 String _DFKA = "";
-                                 _isExpandableNonCompositeForeignKey = InvoiceSummariesTable.Instance.TableDefinition.IsExpandableNonCompositeForeignKey(InvoiceSummariesTable.SupplierId);
-                                 _DFKA = InvoiceSummariesTable.GetDFKA(record.SupplierId.ToString(), InvoiceSummariesTable.SupplierId,null);
-                                 if (_isExpandableNonCompositeForeignKey &&  ( _DFKA  != null)  &&  InvoiceSummariesTable.SupplierId.IsApplyDisplayAs){
-                                     report.AddData("${SupplierId}", _DFKA,ReportEnum.Align.Left, 300);
-                                 }else{
-                                     report.AddData("${SupplierId}", record.Format(InvoiceSummariesTable.SupplierId), ReportEnum.Align.Left, 300);
-                                 }
-                             }
-
-                            report.WriteRow();
-                        }
-                        pageNum++;
-                        recordCount += records.Length;
-                    }
-                }
-                while (records != null && recordCount < totalRows && whereClause.RunQuery);
-                	
-                
-                report.Close();
-                BaseClasses.Utils.NetUtils.WriteResponseBinaryAttachment(this.Page.Response, report.Title + ".pdf", report.ReportInByteArray, 0, true);
-            
-            } catch (Exception ex) {
-                  // Upon error, rollback the transaction
-                  this.Page.RollBackTransaction(sender);
-                  this.Page.ErrorOnPage = true;
-
-            // Report the error message to the end user
-            BaseClasses.Utils.MiscUtils.RegisterJScriptAlert(this, "BUTTON_CLICK_MESSAGE", ex.Message);
-    
-            } finally {
-                DbUtils.EndTransaction();
-            }
-    
-        }
-            
-            
-        
-        // event handler for ImageButton
         public virtual void ResetButton_Click(object sender, ImageClickEventArgs args)
         {
               
@@ -9450,177 +8912,6 @@ public class BaseInvoiceSummariesTableControl : IDE.UI.BaseApplicationTableContr
                 
             this.DataChanged = true;
           
-            } catch (Exception ex) {
-                  this.Page.ErrorOnPage = true;
-
-            // Report the error message to the end user
-            BaseClasses.Utils.MiscUtils.RegisterJScriptAlert(this, "BUTTON_CLICK_MESSAGE", ex.Message);
-    
-            } finally {
-    
-            }
-    
-        }
-            
-            
-        
-        // event handler for ImageButton
-        public virtual void WordButton_Click(object sender, ImageClickEventArgs args)
-        {
-              
-            try {
-                // Enclose all database retrieval/update code within a Transaction boundary
-                DbUtils.StartTransaction();
-                
-
-                WordReport report = new WordReport();
-
-                report.SpecificReportFileName = Page.Server.MapPath("Group-By-InvoiceSummaries-Table.WordButton.word");
-                // report.Title replaces the value tag of page header and footer containing ${ReportTitle}
-                report.Title = "InvoiceSummaries";
-                // If Group-By-InvoiceSummaries-Table.WordButton.report specifies a valid report template,
-                // AddColumn methods will generate a report template.
-                // Each AddColumn method-call specifies a column
-                // The 1st parameter represents the text of the column header
-                // The 2nd parameter represents the horizontal alignment of the column header
-                // The 3rd parameter represents the text format of the column detail
-                // The 4th parameter represents the horizontal alignment of the column detail
-                // The 5th parameter represents the relative width of the column
-                 report.AddColumn(InvoiceSummariesTable.InvoiceId.Name, ReportEnum.Align.Right, "${InvoiceId}", ReportEnum.Align.Right, 15);
-                 report.AddColumn(InvoiceSummariesTable.InvoiceDate.Name, ReportEnum.Align.Left, "${InvoiceDate}", ReportEnum.Align.Left, 20);
-                 report.AddColumn(InvoiceSummariesTable.InvoiceNumber.Name, ReportEnum.Align.Left, "${InvoiceNumber}", ReportEnum.Align.Left, 20);
-                 report.AddColumn(InvoiceSummariesTable.GstTotal.Name, ReportEnum.Align.Right, "${GstTotal}", ReportEnum.Align.Right, 19);
-                 report.AddColumn(InvoiceSummariesTable.InvoiceTotal.Name, ReportEnum.Align.Right, "${InvoiceTotal}", ReportEnum.Align.Right, 19);
-                 report.AddColumn(InvoiceSummariesTable.AccountNumber.Name, ReportEnum.Align.Left, "${AccountNumber}", ReportEnum.Align.Left, 15);
-                 report.AddColumn(InvoiceSummariesTable.CustomerNumber.Name, ReportEnum.Align.Left, "${CustomerNumber}", ReportEnum.Align.Left, 15);
-                 report.AddColumn(InvoiceSummariesTable.SiteId.Name, ReportEnum.Align.Left, "${SiteId}", ReportEnum.Align.Left, 28);
-                 report.AddColumn(InvoiceSummariesTable.NetworkChargesTotal.Name, ReportEnum.Align.Right, "${NetworkChargesTotal}", ReportEnum.Align.Right, 19);
-                 report.AddColumn(InvoiceSummariesTable.EnergyChargesTotal.Name, ReportEnum.Align.Right, "${EnergyChargesTotal}", ReportEnum.Align.Right, 19);
-                 report.AddColumn(InvoiceSummariesTable.MiscChargesTotal.Name, ReportEnum.Align.Right, "${MiscChargesTotal}", ReportEnum.Align.Right, 19);
-                 report.AddColumn(InvoiceSummariesTable.ConnectionNumber.Name, ReportEnum.Align.Left, "${ConnectionNumber}", ReportEnum.Align.Left, 24);
-                 report.AddColumn(InvoiceSummariesTable.InvoiceDueDate.Name, ReportEnum.Align.Left, "${InvoiceDueDate}", ReportEnum.Align.Left, 20);
-                 report.AddColumn(InvoiceSummariesTable.PeriodStart.Name, ReportEnum.Align.Left, "${PeriodStart}", ReportEnum.Align.Left, 20);
-                 report.AddColumn(InvoiceSummariesTable.PeriodEnd.Name, ReportEnum.Align.Left, "${PeriodEnd}", ReportEnum.Align.Left, 20);
-                 report.AddColumn(InvoiceSummariesTable.EnergyPointId.Name, ReportEnum.Align.Left, "${EnergyPointId}", ReportEnum.Align.Left, 24);
-                 report.AddColumn(InvoiceSummariesTable.SupplierId.Name, ReportEnum.Align.Left, "${SupplierId}", ReportEnum.Align.Left, 28);
-
-                WhereClause whereClause = null;
-                whereClause = CreateWhereClause();
-            
-                OrderBy orderBy = CreateOrderBy();
-                BaseFilter joinFilter = CreateCompoundJoinFilter();
-                
-
-                int rowsPerQuery = 5000;
-                int pageNum = 0;
-                int recordCount = 0;
-                int totalRows = InvoiceSummariesTable.GetRecordCount(joinFilter,whereClause);
-
-                report.Page = Page.GetResourceValue("Txt:Page", "IDE");
-                report.ApplicationPath = this.Page.MapPath(Page.Request.ApplicationPath);
-
-                ColumnList columns = InvoiceSummariesTable.GetColumnList();
-                InvoiceSummariesRecord[] records = null;
-                do
-                {
-                    records = InvoiceSummariesTable.GetRecords(joinFilter,whereClause, orderBy, pageNum, rowsPerQuery);
-                    if (records != null && records.Length > 0 && whereClause.RunQuery)
-                    {
-                        foreach ( InvoiceSummariesRecord record in records)
-                        {
-                            // AddData method takes four parameters
-                            // The 1st parameter represents the data format
-                            // The 2nd parameter represents the data value
-                            // The 3rd parameter represents the default alignment of column using the data
-                            // The 4th parameter represents the maximum length of the data value being shown
-                             report.AddData("${InvoiceId}", record.Format(InvoiceSummariesTable.InvoiceId), ReportEnum.Align.Right, 300);
-                             report.AddData("${InvoiceDate}", record.Format(InvoiceSummariesTable.InvoiceDate), ReportEnum.Align.Left, 300);
-                             report.AddData("${InvoiceNumber}", record.Format(InvoiceSummariesTable.InvoiceNumber), ReportEnum.Align.Left, 300);
-                             report.AddData("${GstTotal}", record.Format(InvoiceSummariesTable.GstTotal), ReportEnum.Align.Right, 300);
-                             report.AddData("${InvoiceTotal}", record.Format(InvoiceSummariesTable.InvoiceTotal), ReportEnum.Align.Right, 300);
-                             report.AddData("${AccountNumber}", record.Format(InvoiceSummariesTable.AccountNumber), ReportEnum.Align.Left, 300);
-                             report.AddData("${CustomerNumber}", record.Format(InvoiceSummariesTable.CustomerNumber), ReportEnum.Align.Left, 300);
-                             if (BaseClasses.Utils.MiscUtils.IsNull(record.SiteId)){
-                                 report.AddData("${SiteId}", "",ReportEnum.Align.Left, 300);
-                             }else{
-                                 Boolean _isExpandableNonCompositeForeignKey;
-                                 String _DFKA = "";
-                                 _isExpandableNonCompositeForeignKey = InvoiceSummariesTable.Instance.TableDefinition.IsExpandableNonCompositeForeignKey(InvoiceSummariesTable.SiteId);
-                                 _DFKA = InvoiceSummariesTable.GetDFKA(record.SiteId.ToString(), InvoiceSummariesTable.SiteId,null);
-                                 if (_isExpandableNonCompositeForeignKey &&  ( _DFKA  != null)  &&  InvoiceSummariesTable.SiteId.IsApplyDisplayAs){
-                                     report.AddData("${SiteId}", _DFKA,ReportEnum.Align.Left, 300);
-                                 }else{
-                                     report.AddData("${SiteId}", record.Format(InvoiceSummariesTable.SiteId), ReportEnum.Align.Left, 300);
-                                 }
-                             }
-                             report.AddData("${NetworkChargesTotal}", record.Format(InvoiceSummariesTable.NetworkChargesTotal), ReportEnum.Align.Right, 300);
-                             report.AddData("${EnergyChargesTotal}", record.Format(InvoiceSummariesTable.EnergyChargesTotal), ReportEnum.Align.Right, 300);
-                             report.AddData("${MiscChargesTotal}", record.Format(InvoiceSummariesTable.MiscChargesTotal), ReportEnum.Align.Right, 300);
-                             report.AddData("${ConnectionNumber}", record.Format(InvoiceSummariesTable.ConnectionNumber), ReportEnum.Align.Left, 300);
-                             report.AddData("${InvoiceDueDate}", record.Format(InvoiceSummariesTable.InvoiceDueDate), ReportEnum.Align.Left, 300);
-                             report.AddData("${PeriodStart}", record.Format(InvoiceSummariesTable.PeriodStart), ReportEnum.Align.Left, 300);
-                             report.AddData("${PeriodEnd}", record.Format(InvoiceSummariesTable.PeriodEnd), ReportEnum.Align.Left, 300);
-                             if (BaseClasses.Utils.MiscUtils.IsNull(record.EnergyPointId)){
-                                 report.AddData("${EnergyPointId}", "",ReportEnum.Align.Left, 300);
-                             }else{
-                                 Boolean _isExpandableNonCompositeForeignKey;
-                                 String _DFKA = "";
-                                 _isExpandableNonCompositeForeignKey = InvoiceSummariesTable.Instance.TableDefinition.IsExpandableNonCompositeForeignKey(InvoiceSummariesTable.EnergyPointId);
-                                 _DFKA = InvoiceSummariesTable.GetDFKA(record.EnergyPointId.ToString(), InvoiceSummariesTable.EnergyPointId,null);
-                                 if (_isExpandableNonCompositeForeignKey &&  ( _DFKA  != null)  &&  InvoiceSummariesTable.EnergyPointId.IsApplyDisplayAs){
-                                     report.AddData("${EnergyPointId}", _DFKA,ReportEnum.Align.Left, 300);
-                                 }else{
-                                     report.AddData("${EnergyPointId}", record.Format(InvoiceSummariesTable.EnergyPointId), ReportEnum.Align.Left, 300);
-                                 }
-                             }
-                             if (BaseClasses.Utils.MiscUtils.IsNull(record.SupplierId)){
-                                 report.AddData("${SupplierId}", "",ReportEnum.Align.Left, 300);
-                             }else{
-                                 Boolean _isExpandableNonCompositeForeignKey;
-                                 String _DFKA = "";
-                                 _isExpandableNonCompositeForeignKey = InvoiceSummariesTable.Instance.TableDefinition.IsExpandableNonCompositeForeignKey(InvoiceSummariesTable.SupplierId);
-                                 _DFKA = InvoiceSummariesTable.GetDFKA(record.SupplierId.ToString(), InvoiceSummariesTable.SupplierId,null);
-                                 if (_isExpandableNonCompositeForeignKey &&  ( _DFKA  != null)  &&  InvoiceSummariesTable.SupplierId.IsApplyDisplayAs){
-                                     report.AddData("${SupplierId}", _DFKA,ReportEnum.Align.Left, 300);
-                                 }else{
-                                     report.AddData("${SupplierId}", record.Format(InvoiceSummariesTable.SupplierId), ReportEnum.Align.Left, 300);
-                                 }
-                             }
-
-                            report.WriteRow();
-                        }
-                        pageNum++;
-                        recordCount += records.Length;
-                    }
-                }
-                while (records != null && recordCount < totalRows && whereClause.RunQuery);
-                report.save();
-                BaseClasses.Utils.NetUtils.WriteResponseBinaryAttachment(this.Page.Response, report.Title + ".doc", report.ReportInByteArray, 0, true);
-          
-            } catch (Exception ex) {
-                  // Upon error, rollback the transaction
-                  this.Page.RollBackTransaction(sender);
-                  this.Page.ErrorOnPage = true;
-
-            // Report the error message to the end user
-            BaseClasses.Utils.MiscUtils.RegisterJScriptAlert(this, "BUTTON_CLICK_MESSAGE", ex.Message);
-    
-            } finally {
-                DbUtils.EndTransaction();
-            }
-    
-        }
-            
-            
-        
-        // event handler for Button
-        public virtual void ActionsButton_Click(object sender, EventArgs args)
-        {
-              
-            try {
-                
-            //This method is initially empty to implement custom click handler.
-      
             } catch (Exception ex) {
                   this.Page.ErrorOnPage = true;
 
@@ -9842,21 +9133,9 @@ public class BaseInvoiceSummariesTableControl : IDE.UI.BaseApplicationTableContr
 
 #region "Helper Properties"
         
-        public IDE.UI.IThemeButtonWithArrow ActionsButton {
-            get {
-                return (IDE.UI.IThemeButtonWithArrow)BaseClasses.Utils.MiscUtils.FindControlRecursively(this, "ActionsButton");
-            }
-        }
-        
         public System.Web.UI.WebControls.Label CheckedText {
             get {
                 return (System.Web.UI.WebControls.Label)BaseClasses.Utils.MiscUtils.FindControlRecursively(this, "CheckedText");
-            }
-        }
-        
-        public System.Web.UI.WebControls.ImageButton ExcelButton {
-            get {
-                return (System.Web.UI.WebControls.ImageButton)BaseClasses.Utils.MiscUtils.FindControlRecursively(this, "ExcelButton");
             }
         }
         
@@ -9869,12 +9148,6 @@ public class BaseInvoiceSummariesTableControl : IDE.UI.BaseApplicationTableContr
         public IDE.UI.IThemeButtonWithArrow FiltersButton {
             get {
                 return (IDE.UI.IThemeButtonWithArrow)BaseClasses.Utils.MiscUtils.FindControlRecursively(this, "FiltersButton");
-            }
-        }
-        
-        public System.Web.UI.WebControls.ImageButton ImportButton {
-            get {
-                return (System.Web.UI.WebControls.ImageButton)BaseClasses.Utils.MiscUtils.FindControlRecursively(this, "ImportButton");
             }
         }
         
@@ -9896,12 +9169,6 @@ public class BaseInvoiceSummariesTableControl : IDE.UI.BaseApplicationTableContr
             }
         }
         
-        public System.Web.UI.WebControls.ImageButton NewButton {
-            get {
-                return (System.Web.UI.WebControls.ImageButton)BaseClasses.Utils.MiscUtils.FindControlRecursively(this, "NewButton");
-            }
-        }
-        
           public System.Web.UI.WebControls.DropDownList OrderSort {
           get {
           return (System.Web.UI.WebControls.DropDownList)BaseClasses.Utils.MiscUtils.FindControlRecursively(this, "OrderSort");
@@ -9911,12 +9178,6 @@ public class BaseInvoiceSummariesTableControl : IDE.UI.BaseApplicationTableContr
         public IDE.UI.IPaginationModern Pagination {
             get {
                 return (IDE.UI.IPaginationModern)BaseClasses.Utils.MiscUtils.FindControlRecursively(this, "Pagination");
-            }
-        }
-        
-        public System.Web.UI.WebControls.ImageButton PDFButton {
-            get {
-                return (System.Web.UI.WebControls.ImageButton)BaseClasses.Utils.MiscUtils.FindControlRecursively(this, "PDFButton");
             }
         }
         
@@ -9971,12 +9232,6 @@ public class BaseInvoiceSummariesTableControl : IDE.UI.BaseApplicationTableContr
         public System.Web.UI.WebControls.Literal Title0 {
             get {
                 return (System.Web.UI.WebControls.Literal)BaseClasses.Utils.MiscUtils.FindControlRecursively(this, "Title0");
-            }
-        }
-        
-        public System.Web.UI.WebControls.ImageButton WordButton {
-            get {
-                return (System.Web.UI.WebControls.ImageButton)BaseClasses.Utils.MiscUtils.FindControlRecursively(this, "WordButton");
             }
         }
         

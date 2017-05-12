@@ -34,12 +34,13 @@ namespace IDE.UI
                          .Exists();
         }
 
-        public bool UploadToBlob(int key, int container, System.Web.UI.HtmlControls.HtmlInputFile inputFile = null)
+        //public bool UploadToBlob(int key, int container, System.Web.UI.HtmlControls.HtmlInputFile inputFile = null)
+        public bool UploadToBlob(string key, string container, System.Web.UI.HtmlControls.HtmlInputFile inputFile = null)
         {
             // First check that we have strings for key and container
 
-            string _key = key.ToString().PadLeft(8, '0') + ".pdf";
-            string _container = container.ToString().PadLeft(6, '0');
+            string _key = key; // key.ToString().PadLeft(8, '0') + ".pdf";
+            string _container = container; // container.ToString().PadLeft(6, '0');
 
             if (!(String.IsNullOrEmpty(_key) | String.IsNullOrEmpty(_container)))
             {
@@ -112,19 +113,20 @@ namespace IDE.UI
 			}
 			else
 			{
-			    ///You can raise an exception in the custom stored procedure and catch the exception and reporting it to the user.
-			    ///To raise the exception:
-			
-			    ///SET NOCOUNT ON;
-			    ///RAISERROR (N'My custom error message goes here', 11, 1)
-			
-			    ///IMPORTANT: If you raise an error that has a severity level of 10 or less, it is considered  
-			    ///a warning, and no exception is raised. The severity of the error must be between 11 and 20
-			    ///for an exception to be thrown.
-			
-			    ///Once the exception is raised, you can look at:
-			    ///myStoredProcedure.ErrorMessage to get the text of the error message and use RegisterJScriptAlert to report this to the user.
-			}
+                message += string.Format("{0}<br/>", "Error in validation process. Please contact your system administrator");
+                ///You can raise an exception in the custom stored procedure and catch the exception and reporting it to the user.
+                ///To raise the exception:
+
+                ///SET NOCOUNT ON;
+                ///RAISERROR (N'My custom error message goes here', 11, 1)
+
+                ///IMPORTANT: If you raise an error that has a severity level of 10 or less, it is considered  
+                ///a warning, and no exception is raised. The severity of the error must be between 11 and 20
+                ///for an exception to be thrown.
+
+                ///Once the exception is raised, you can look at:
+                ///myStoredProcedure.ErrorMessage to get the text of the error message and use RegisterJScriptAlert to report this to the user.
+            }
             return message;
 		}
 		    

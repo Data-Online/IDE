@@ -112,11 +112,12 @@ namespace IDE.UI.Controls.Show_InvoiceSummaries
             inputFile = ((System.Web.UI.HtmlControls.HtmlInputFile)(this.Page.FindControlRecursively("inputFile")));
 
             // bool test = (this.Page as BaseApplicationPage).UploadToBlob(inputFile, this.PdfFileName.Text, this.ContainerId.Text);
-
+            string zz = this.PdfFileName.Text;
             if ((!(inputFile.PostedFile == null) && (inputFile.PostedFile.ContentLength > 0)))
             {
                 this.LoadingImage.Visible = true;
-                if ((this.Page as BaseApplicationPage).UploadToBlob(this.DataSource.InvoiceId, this.DataSource.SiteId, inputFile))
+                //if ((this.Page as BaseApplicationPage).UploadToBlob(this.DataSource.InvoiceId, this.DataSource.SiteId, inputFile))
+                if ((this.Page as BaseApplicationPage).UploadToBlob(this.PdfFileName.Text, this.ContainerId.Text, inputFile))
                 //if (UploadToBlob(inputFile, this.PdfFileName.Text, this.ContainerId.Text))
                     this.UploadedOkImage.Visible = true;
                 this.LoadingImage.Visible = false;
