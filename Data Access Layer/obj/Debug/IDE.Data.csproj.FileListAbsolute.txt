@@ -4,3 +4,10 @@ P:\Projects\Cloud_Development\CIMSCO\InvoiceDataEntry\IDE\Data Access Layer\bin\
 P:\Projects\Cloud_Development\CIMSCO\InvoiceDataEntry\IDE\Data Access Layer\obj\Debug\IDE.Data.dll
 P:\Projects\Cloud_Development\CIMSCO\InvoiceDataEntry\IDE\Data Access Layer\obj\Debug\IDE.Data.pdb
 P:\Projects\Cloud_Development\CIMSCO\InvoiceDataEntry\IDE\Data Access Layer\bin\Newtonsoft.Json.xml
+P:\Projects\Cloud_Development\GitHub\IDE\Data Access Layer\bin\IDE.Data.dll
+P:\Projects\Cloud_Development\GitHub\IDE\Data Access Layer\bin\IDE.Data.pdb
+P:\Projects\Cloud_Development\GitHub\IDE\Data Access Layer\bin\Newtonsoft.Json.dll
+P:\Projects\Cloud_Development\GitHub\IDE\Data Access Layer\bin\Newtonsoft.Json.xml
+P:\Projects\Cloud_Development\GitHub\IDE\Data Access Layer\obj\Debug\IDE.Data.csprojResolveAssemblyReference.cache
+P:\Projects\Cloud_Development\GitHub\IDE\Data Access Layer\obj\Debug\IDE.Data.dll
+P:\Projects\Cloud_Development\GitHub\IDE\Data Access Layer\obj\Debug\IDE.Data.pdb

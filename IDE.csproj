@@ -626,17 +626,20 @@
     <Compile Include="EnergySuppliers1\EnergySuppliers-QuickSelector1.Controls.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="EnergyPoints1\EnergyPoints-QuickSelector1.aspx.cs" >
+    <Compile Include="EnergyPoints1\EnergyPoints-QuickSelector1.aspx.cs">
       <DependentUpon>EnergyPoints-QuickSelector1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="EnergyPoints1\EnergyPoints-QuickSelector1.Controls.cs" >
+    <Compile Include="EnergyPoints1\EnergyPoints-QuickSelector1.Controls.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="BaseClasses\Readme.txt" />
     <Content Include="Default.aspx" />
+    <Content Include="Images\eek-logo.png" />
+    <Content Include="Images\eekLogoNoText.png" />
+    <Content Include="Images\uploadedOk.png" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -939,7 +942,7 @@
     <Content Include="EnergyPoints1\Show-EnergyPoints1.aspx" />
     <Content Include="EnergyPoints1\Show-EnergyPoints-Table1.aspx" />
     <Content Include="EnergySuppliers1\EnergySuppliers-QuickSelector1.aspx" />
-    <Content Include="EnergyPoints1\EnergyPoints-QuickSelector1.aspx"  />
+    <Content Include="EnergyPoints1\EnergyPoints-QuickSelector1.aspx" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Global.asax.resx">
